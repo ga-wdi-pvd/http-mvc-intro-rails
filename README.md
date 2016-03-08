@@ -3,9 +3,9 @@
 ## Learning Objectives
 - Explain what Ruby on Rails is and it's architectural components (rMVC)
 - Explain the lifecycle of an HTTP request in Ruby on Rails
+- Understand the RESTful methods and how they relate to an HTTP request
 - Explain how Convention over Configuration relates to Ruby on Rails
 - List the most common folders in a rails application and describe their purpose
-- Compare and contrast the structure Sinatra and Rails apps
 - Create a new Ruby on Rails application
 - Build a Rails App with a RESTful interface
 - Follow Rails naming conventions when creating models, views and controllers
@@ -19,6 +19,8 @@ Rails is a heavy duty web framework that follows relatively strict conventions i
 > It is designed to make programming web applications easier by making assumptions about what every developer needs to get started. It makes the assumption that there is the "best" way to do things, and it's designed to encourage that way - and in some cases to discourage alternatives. - Ruby on Rails guide
 
 > Rails is a framework with lots of rules/conventions. Pay attention to the conventions you'll need to follow for rails throughout the week.
+
+Before we get to deep into Rails specifically, we first need to understand the underlying architectural components and the lifecycle of requests.
 
 ## rMVC (10/15)
 
@@ -113,7 +115,7 @@ Note that the path doesn't contain any of the words describing the CRUD function
 
 Let's check out the [ESPN website](http://espn.go.com/). If we go to a specific player's webpage, we can see this same sort of structure in the URL.
 
-### You do:
+### You do (10):
 
 Create routes for the following requests. The first one is done for you.
 
@@ -126,8 +128,23 @@ Create routes for the following requests. The first one is done for you.
 6. Update the info for an animal with 3 as its id.
 7. Update homework submission #32 for assignment #3
 
-## Rails folder/file structure (15/30)
-The first thing that I want to do, is just create a new rails applications. But I think first what we should do is ensure we have rails. `$ gem install rails`. Next I want to actually create my rails application:
+
+## Rails (15/30)
+
+### Routes
+-
+-
+-
+
+### Views
+
+
+
+
+## Rails (15/30)
+Let's get into implementing the idea of HTTP requests and RESTful methods by building our first Rails app!
+The first thing that I want to do, is just create a new rails applications. But I think first what we should do is ensure we have rails. Check your version with `rails -v` in the terminal.  If you get an error, try `$ gem install rails`.
+Next I want to actually create my rails application:
 
 ```bash
 $ rails new tunr -d postgresql
