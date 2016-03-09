@@ -258,8 +258,20 @@ In the main directory there are a couple of files your familiar with, the `Gemfi
 -
 -
 
+## Error Driven Development (30/105)
+One of the best part about Rails is the errors! What?
 
-## Rails (15/30)
+Rails provides detailed, and understandable, errors that allow you to take the necessary steps to build a working app. We won't go too deep into them during this class, but you will get plenty of exposure during the upcoming lessons!
+Lets go into our browser and go to `http://localhost:3000/mispelledartists` and we'll see:
+
+![no route error](images/no_route.png)
+
+## Closing(5/150)
+Review LO's
+
+
+
+<!-- ## Rails (15/30)
 Let's get into implementing the idea of HTTP requests and RESTful methods by building our first Rails app!
 The first thing that I want to do, is just create a new rails applications. But I think first what we should do is ensure we have rails. Check your version with `rails -v` in the terminal.  If you get an error, try `$ gem install rails`.
 Next I want to actually create my rails application:
@@ -522,4 +534,4 @@ config.action_controller.permit_all_parameters = true
 Run rails server and test out your site. It's not all too much different from Sinatra. Except it splits the conerns of routing from controllers, and makes assumptions about what your files are called.
 
 ## Closing(5/150)
-Review LO's
+Review LO's -->
