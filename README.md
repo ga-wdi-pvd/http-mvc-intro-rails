@@ -196,17 +196,22 @@ Note that this isn't a server anyone else can see, but it's still a server.
 We need a way to develop in our own environment before we just put it on the web. As such, we're going to use our computers as local servers to host our applications until we move it to a production domain. In this way we can test/write code freely in our development environment.
 
 ### Routes
+
 - Where do we configure our routes in a Rails Application?
 - What is the syntax for writing routes in a Rails App?
 - Why are we including a symbol again in `artists/:id` in our path?
+- What does `artists#index` and `shows#index` referring to?
 
 >Answers
 - config/routes.rb
 - `GET` request example: `get "artists" => "artists#index"``
 - Can dynamically change the id of artist and grab those params as needed in our application
+- On the right side of the hash rocket `"artists#index"` its specifying the ***controller*** and an ***action*** within that controller. In this case, when a user of our site accesses the `artists` path(`http://localhost:3000/artists`), that request will be sent to the artists controller and execute the index action inside that controller.
 
 ### Views
-
+- Does it matter what we name our views, for example, does it matter if it's plural or singular?
+- What is the layouts directory used for?
+- What is this `index.html.erb` file type?
 
 ## Rails (15/30)
 Let's get into implementing the idea of HTTP requests and RESTful methods by building our first Rails app!
