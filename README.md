@@ -114,7 +114,7 @@ REST provides a template for the way different paths should look:
 
 Note that the path doesn't contain any of the words describing the CRUD functionality that will be executed. That's the method's job.
 
-Let's check out the [ESPN website](http://espn.go.com/). If we go to a specific player's webpage, we can see this same sort of structure in the URL.
+Let's check out the [ESPN website](http://espn.go.com/mlb/player/_/id/30951/bryce-harper). If we go to a specific player's webpage, we can see this same sort of structure in the URL.
 
 ## Path Parameters
 
@@ -161,11 +161,12 @@ Create routes for the following requests. The first one is done for you.
 
 ## Rails (15/30)
 
-Let's walk through a Rails App to get comfortable with it's file structures and identify where we will be configuring the all of the concepts we discussed above!
+Let's walk through a Rails App to get comfortable with it's file structures and identify where we will be configuring the all of the concepts we discussed above! Enter [Tunr](https://github.com/ga-wdi-exercises/tunr_rails_views_controllers/tree/solution)! (yes, use the solution branch!)
 
 ### Starting a Rails Server
 
 Let's go ahead and look at the final application before we dive into the code.
+>if you want to follow along, clone it down and checkout the solution branch
 
 In my console, I'm run the following command:
 
@@ -195,6 +196,44 @@ Note that this isn't a server anyone else can see, but it's still a server.
 
 We need a way to develop in our own environment before we just put it on the web. As such, we're going to use our computers as local servers to host our applications until we move it to a production domain. In this way we can test/write code freely in our development environment.
 
+### What does a Rails folder look like?
+
+As soon as we generate a Rails app, you can see there are already many folders and files generated from just the one command.
+
+* Note: when we first generated Tunr, we ran the following command:
+```bash
+$ rails new tunr -d postgresql
+```
+
+![Rails folder structure](images/rails_folders.png)
+
+It can be quite daunting at first. It'll take some getting used to, but more importantly, you're already familiar with a lot of the stuff in rails we'll be using. Additionally, you can ignore a lot of the other stuff until you need to incorporate some weird gem/dependency. So we started learning about "convention over configuration" during the class for Active Record. As we scale to a rails size application, We can quickly see the need for conventions in such a massive framework. Specifically for folder and file structure, rails can be quite particular about how we name things. Throughout this week we'll be going through a bunch of different conventions we need to follow.
+
+The first folder we'll talk about is the `app` folder:
+
+![Rails app folder](images/rails_app.png)
+
+This folder is the the most important folder in your entire application. It'll have pretty much most of the programs functionality resting in it.
+
+- `assets` - This will be where all of your CSS, JS, and image files belong.
+- `controllers` - This folder will contain all controllers.(ST - WG) What do controllers do for us?
+- `helpers` - This is where you can define any helper methods for your application
+- `mailers` - Won't be covering mailers in the scope of this class. Mailers are utilized to send and receive email within a rails application. But it's pretty simple, if you want to learn more about it. You can look [here](http://guides.rubyonrails.org/action_mailer_basics.html)
+- `models` - this folder will contain our AR models.
+- `views` - This folder contains all of the views in this application.
+
+> These folders are easily the most important part of your application. Not to say the other parts aren't.
+
+The `bin` folder contains binstubs. Not going over this in the scope of this class, but basically they're used as wrappers around ruby gem executables(like pry) to be used in lieu of `bundle exec`
+
+The `config` is another folder that's pretty important. The file you'll most be visiting is `routes.rb` This is the router in rMVC.
+
+The `db` folder is one you'll be working in for a bit of time as well. This contains the seed file but additionally it will also contain your migrations which you'll be going over in the next class.
+
+In the main directory there are a couple of files your familiar with, the `Gemfile` and `Gemfile.lock`
+
+**Let's get into the app!**
+
 ### Routes
 
 - Where do we configure our routes in a Rails Application?
@@ -212,6 +251,12 @@ We need a way to develop in our own environment before we just put it on the web
 - Does it matter what we name our views, for example, does it matter if it's plural or singular?
 - What is the layouts directory used for?
 - What is this `index.html.erb` file type?
+
+### Models
+-
+-
+-
+
 
 ## Rails (15/30)
 Let's get into implementing the idea of HTTP requests and RESTful methods by building our first Rails app!
