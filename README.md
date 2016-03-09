@@ -253,10 +253,21 @@ In the main directory there are a couple of files your familiar with, the `Gemfi
 - What is the layouts directory used for?
 - What is this `index.html.erb` file type?
 
+>Answers
+- html.erb is an html file type that allows for in line ruby code. As we will see, developers use embedded ruby tags such as ```<% %>```
+- Yes! it does matter that we make these folder names plural. Rails convention says to make the folders in the views match up with the controllers
+- This creates the base layout of your page. If you have a nav bar that should remain throughout your app, the layout is the place to be!
+It also allows you to link script and css files in one place.
+
 ### Models
--
--
--
+- Where have we seen models like this before?
+- What does has_many and belongs_to mean?
+- What is ```dependent: :destroy```?
+
+>Answers
+- These are ActiveRecord models!
+- These define the relationships between models. In the case of Tunr, we have a simple one-many relationship: one artist has many songs
+- This allows you to delete songs any time the artist of the given song is deleted as well.
 
 ## Error Driven Development (30/105)
 One of the best part about Rails is the errors! What?
