@@ -4,6 +4,7 @@
 - Explain what Ruby on Rails is and it's architectural components (rMVC)
 - Explain the lifecycle of an HTTP request in Ruby on Rails
 - Understand the RESTful methods and how they relate to an HTTP request
+- Define routes with URL parameters and access those parameters
 - Explain how Convention over Configuration relates to Ruby on Rails
 - List the most common folders in a rails application and describe their purpose
 - Create a new Ruby on Rails application
@@ -115,6 +116,35 @@ Note that the path doesn't contain any of the words describing the CRUD function
 
 Let's check out the [ESPN website](http://espn.go.com/). If we go to a specific player's webpage, we can see this same sort of structure in the URL.
 
+## Path Parameters
+
+Ideally, we would NOT want to hard code an id for each path for students. Imagine there were over 200 students in an high school class!
+
+Thankfully we don't have to:
+
+We can instead change `get '/students/1'` to `get '/students/:id'`
+
+### The params hash
+
+Putting a colon `:` in front of `id` turned it into a variable called a path parameter.
+
+This works similarly to Ruby methods and Javascript functions. For example:
+
+```ruby
+def say_hi name
+  puts "Hi there, #{name}!"
+end
+```
+
+```js
+function say_hi(name){
+  console.log("Hi there, " + name + "!");
+}
+```
+This is a `say_hi` method that has an argument called `name`. An argument lets us pass some data into the method so the method can manipulate the data somehow.
+
+`params` is a hash that is generated with every request made to your server. It contains any path parameters -- and some other stuff, as we'll see later.
+
 ### You do (10):
 
 Create routes for the following requests. The first one is done for you.
@@ -131,14 +161,51 @@ Create routes for the following requests. The first one is done for you.
 
 ## Rails (15/30)
 
+Let's walk through a Rails App to get comfortable with it's file structures and identify where we will be configuring the all of the concepts we discussed above!
+
+### Starting a Rails Server
+
+Let's go ahead and look at the final application before we dive into the code.
+
+In my console, I'm run the following command:
+
+$ rails s
+
+We should see something like:
+```
+=> Booting WEBrick
+=> Rails 4.2.4 application starting in development on http://localhost:3000
+=> Run `rails server -h` for more startup options
+=> Ctrl-C to shutdown server
+[2016-03-09 09:02:00] INFO  WEBrick 1.3.1
+[2016-03-09 09:02:00] INFO  ruby 2.2.3 (2015-08-18) [x86_64-darwin15]
+[2016-03-09 09:02:00] INFO  WEBrick::HTTPServer#start: pid=97614 port=3000
+```
+
+Let's focus on this particular line:
+`=> Rails 4.2.4 application starting in development on http://localhost:3000`
+
+And enter `http://localhost:3000` in our browser.
+
+>The number `3000` is the port number. This is the default port number in a Rails Application.
+
+Note that this isn't a server anyone else can see, but it's still a server.
+
+(ST-WG) Do you think that the developers of facebook created/updated the facebook application right on https://www.facebook.com? Were all the changes/updates tested on that server? I hope not!
+
+We need a way to develop in our own environment before we just put it on the web. As such, we're going to use our computers as local servers to host our applications until we move it to a production domain. In this way we can test/write code freely in our development environment.
+
 ### Routes
--
--
--
+- Where do we configure our routes in a Rails Application?
+- What is the syntax for writing routes in a Rails App?
+- Why are we including a symbol again in `artists/:id` in our path?
+
+>Answers
+- config/routes.rb
+- `GET` request example: `get "artists" => "artists#index"``
+- Can dynamically change the id of artist and grab those params as needed in our application
 
 ### Views
-
-
 
 
 ## Rails (15/30)
