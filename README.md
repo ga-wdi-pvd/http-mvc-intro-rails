@@ -169,8 +169,9 @@ Let's go ahead and look at the final application before we dive into the code.
 >if you want to follow along, clone it down and checkout the solution branch
 
 In my console, I'm run the following command:
-
+```bash
 $ rails s
+```
 
 We should see something like:
 ```
