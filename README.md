@@ -3,7 +3,6 @@
 ## Learning Objectives
 
 - Explain the role of a server-side web application
-  - to build dynamic web pages based on data
 - Explain the lifecycle of an HTTP request in Ruby on Rails
 - Understand the RESTful routes and how they relate to an HTTP request
 - Define example RESTful routes with URL parameters
@@ -52,7 +51,7 @@ Once the request is made, the server grabs all sorts of information and begins t
 
 ### HTTP Methods (5 min)
 
-HTTP defines five main methods, each of which corresponds to one of the CRUD functionalities.
+HTTP defines the following methods, each of which corresponds to one of the CRUD functionalities.
 
 | Method | Crud functionality |
 |---|---|
@@ -93,11 +92,11 @@ REST provides a template for the way different paths should look:
 | POST | `/students` | Create | Create a new student |
 | GET | `/students/1` | Show | Read information about the student whose ID is 1 |
 | PUT | `/students/1` | Update | Update the existing student whose ID is 1 with all new content |
-| DELETE | `/students/1` | Delete | Delete the existing student whose ID is 1 |
+| DELETE | `/students/1` | Destroy | Delete the existing student whose ID is 1 |
 
 Note that the path doesn't contain any of the words describing the CRUD functionality that will be executed. That's the method's job.
 
-Let's check out the [ESPN website](http://espn.go.com/mlb/team/_/name/bal). If we go to a specific player's webpage, we can see this same sort of structure in the URL.
+Let's check out the [ESPN website](http://espn.go.com/mlb/team/_/name/bal). If we go to a specific team webpage, we can see this same sort of structure in the URL.
 
 #### Path Parameters
 
@@ -158,17 +157,26 @@ As we go through the app and code, you will notice how everything is abstracted 
 
 ## You Do: Explore the folders (5 min)
 
-Students should open up the ```app``` folder and explore the code on their own.
-Note anything that reminds you of our in person exercise!
+Instructions:
+
+* Fork and Clone [Tunr](https://github.com/ga-wdi-exercises/tunr_rails_views_controllers/tree/solution)
+
+* Students should open up the ```app``` folder and explore the code on their own.
+
+* Note anything that reminds you of our in person exercise!
 
 ### What does a Rails folder look like? (5 min)
 
 As soon as we generate a Rails app, you can see there are already many folders and files generated from just the one command.
 
 * Note: when we first generated Tunr, we ran the following command:
+
+**DO NOT run this command during this lesson**
+
 ```bash
 $ rails new tunr -d postgresql
 ```
+
 
 ![Rails folder structure](images/rails_folders.png)
 
@@ -202,7 +210,7 @@ In the main directory there are a couple of files your familiar with, the `Gemfi
 Let's go ahead and look at the final application before we dive into the code.
 >if you want to follow along, clone it down and checkout the solution branch
 
-In my console, I'm run the following command:
+In my console, I'm going to run the following command:
 ```bash
 $ rails s
 ```
@@ -230,8 +238,6 @@ Note that this isn't a server anyone else can see, but it's still a server.
 (ST-WG) Do you think that the developers of facebook created/updated the facebook application right on https://www.facebook.com? Were all the changes/updates tested on that server? I hope not!
 
 We need a way to develop in our own environment before we just put it on the web. As such, we're going to use our computers as local servers to host our applications until we move it to a production domain. In this way we can test/write code freely in our development environment.
-
-**Let's get into the app!**
 
 ## Break (10 min)
 
