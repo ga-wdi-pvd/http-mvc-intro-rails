@@ -88,7 +88,7 @@ Each route results in an **action**.
 REST provides a template for the way different paths should look:
 
 | Method | Path | Action | Used for |
-| --- | --- | --- |
+| --- | --- | --- | --- |
 | GET | `/students` | Index | Read information about all students |
 | POST | `/students` | Create | Create a new student |
 | GET | `/students/1` | Show | Read information about the student whose ID is 1 |
@@ -145,7 +145,6 @@ Life Cycle of the request/response in Rails:
 ## Break (10 min)
 
 ## We Do: In person MVC (30 min)
-
 
 ### Rails Walkthrough (5 min)
 
