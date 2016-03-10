@@ -12,7 +12,7 @@
 - List the most common folders in a rails application and describe their purpose
 - Describe what error driven development is, and how we might do it in Rails
 
-## Framing (5/5)
+## Framing (10 min)
 
 Let's look at [Facebook](https://www.facebook.com/). What would be missing if Zuck only used HTML, CSS, and JS to build it?
 > We'd have to create a new account every time we open the app.
@@ -40,7 +40,7 @@ Let's identify what is the request, and what is the response?
 
 ## Intro to HTTP and REST
 
-### HTTP
+### HTTP (5 min)
 
 **Hypertext Transfer Protocol** (HTTP) is a method for encoding and transporting information between a client (such as a web browser) and a web server. HTTP is the primary protocol for transmission of information across the Internet.
 
@@ -50,15 +50,7 @@ Every **HTTP request** consists of a request **method** and **path**. The path i
 
 Once the request is made, the server grabs all sorts of information and begins to build its **response**. It renders the data on a view (HTML), and then sends it back to the client to see it on the browser.
 
-### For example
-
-You could consider me speaking to the class to be an HTTP request. I'm the browser. You all are the server. The path is the classroom(who/what i'm saying it to). The method is how I'm talking(what kind of things/actions i want).
-
-If my method is "talking in a normal voice", you can infer that the point of my request is for you all to just absorb some information.
-
-If my method is "YELLING IN A LOUD VOICE", you can infer that the point of my request is for you all to start behaving yourselves right this second.
-
-### HTTP Methods (aka Verbs)
+### HTTP Methods (5 min)
 
 HTTP defines five main methods, each of which corresponds to one of the CRUD functionalities.
 
@@ -69,13 +61,13 @@ HTTP defines five main methods, each of which corresponds to one of the CRUD fun
 |PUT| update |
 |DELETE| delete |
 
-### What's the difference at a technical level between a GET and a POST request?
+#### What's the difference at a technical level between a GET and a POST request?
 
 There really isn't a whole lot of difference. The browser sends the request more-or-less the same way. The difference is in how the data comprising the request is "packaged".
 
 We'll see this in greater detail later. For now, just think that, say, a GET request is sent in a plain old white envelope, while a POST request is sent in a red envelope with "ACTION REQUIRED" written on it.
 
-### REST
+### REST (5 min)
 
 REST, or REpresentational State Transfer, is a convention for what these HTTP methods should be to standardize all the communication between browsers and servers.
 
@@ -85,7 +77,7 @@ Knowing REST is important because the vast majority of web developers have agree
 
 We make requests all the time -- especially GET requests. Everytime you go to your browser, enter a URL, and hit enter, you're actually making a GET request.
 
-### RESTful Routes
+### RESTful Routes (5 min)
 
 A **route** is a **method** plus a **path**:
 
@@ -107,7 +99,7 @@ Note that the path doesn't contain any of the words describing the CRUD function
 
 Let's check out the [ESPN website](http://espn.go.com/mlb/team/_/name/bal). If we go to a specific player's webpage, we can see this same sort of structure in the URL.
 
-## Path Parameters
+#### Path Parameters
 
 Ideally, we would NOT want to hard code an id for each path for students. Imagine there were over 200 students in an high school class!
 
@@ -115,7 +107,7 @@ Thankfully we don't have to:
 
 We can instead change `get '/students/1'` to `get '/students/:id'`
 
-### You do (10):
+### You Do - Create routes (10 min)
 
 Create routes for the following requests. The first one is done for you.
 
@@ -128,9 +120,9 @@ Create routes for the following requests. The first one is done for you.
 6. Update the info for an animal with 3 as its id.
 7. Update homework submission #32 for assignment #3
 
-## Rails (15/30)
+## Rails
 
-## rMVC (10/15)
+## rMVC (10 min)
 
 ![rMVC](http://i.stack.imgur.com/Sf2OQ.png)
 
@@ -150,12 +142,12 @@ Life Cycle of the request/response in Rails:
 
 6. The view takes the objects from the controller and sends a response to the user.
 
-## We Do: In person MVC
+## Break (10 min)
+
+## We Do: In person MVC (30 min)
 
 
-### Rails Walkthrough
-
-<!-- a short section on WHY is Rails MVC, or rather why is our code broken up into these little pieces -->
+### Rails Walkthrough (5 min)
 
 Let's walk through a Rails App to get comfortable with it's file structures and identify where we will be configuring the all of the concepts we discussed above! Enter [Tunr](https://github.com/ga-wdi-exercises/tunr_rails_views_controllers/tree/solution)! (yes, use the solution branch!)
 
@@ -165,12 +157,12 @@ As we go through the app and code, you will notice how everything is abstracted 
 - Readability
 - Convention over configuration (rails conventions)
 
-## You Do: Explore the folders
+## You Do: Explore the folders (5 min)
 
 Students should open up the ```app``` folder and explore the code on their own.
 Note anything that reminds you of our in person exercise!
 
-### What does a Rails folder look like?
+### What does a Rails folder look like? (5 min)
 
 As soon as we generate a Rails app, you can see there are already many folders and files generated from just the one command.
 
@@ -206,7 +198,7 @@ The `db` folder is one you'll be working in for a bit of time as well. This cont
 
 In the main directory there are a couple of files your familiar with, the `Gemfile` and `Gemfile.lock`
 
-### Starting a Rails Server
+### Starting a Rails Server (5 min)
 
 Let's go ahead and look at the final application before we dive into the code.
 >if you want to follow along, clone it down and checkout the solution branch
@@ -242,14 +234,16 @@ We need a way to develop in our own environment before we just put it on the web
 
 **Let's get into the app!**
 
-### Tunr
+## Break (10 min)
+
+### Tunr (20 min)
 
 - Let's GET artist info
 - PUT changed info on the artist page
 - POST a new artist
 - DELETE an artist
 
-### Questions
+### Questions (10 min)
 
 #### Routes
 
@@ -285,7 +279,7 @@ It also allows you to link script and css files in one place.
 - These are ActiveRecord models!
 - These define the relationships between models. In the case of Tunr, we have a simple one-many relationship: one artist has many songs
 
-## Error Driven Development (30/105)
+## Error Driven Development
 One of the best part about Rails is the errors! What?
 
 Rails provides detailed, and understandable, errors that allow you to take the necessary steps to build a working app. We won't go too deep into them during this class, but you will get plenty of exposure during the upcoming lessons!
@@ -293,7 +287,7 @@ Lets go into our browser and go to `http://localhost:3000/mispelledartists` and 
 
 ![no route error](images/no_route.png)
 
-## Closing(5/150)
+## Closing (5 min)
 * Review LO's
 
 * Let's take a look at another real world example: [garnet](https://github.com/ga-dc/garnet)!
