@@ -1,18 +1,21 @@
 # http-mvc-intro-rails
 
 ## Learning Objectives
-- Explain what Ruby on Rails is and it's architectural components (rMVC)
+
+- Explain the role of a server-side web application
+  - to build dynamic web pages based on data
 - Explain the lifecycle of an HTTP request in Ruby on Rails
-- Understand the RESTful methods and how they relate to an HTTP request
-- Define routes with URL parameters and access those parameters
+- Understand the RESTful routes and how they relate to an HTTP request
+- Define example RESTful routes with URL parameters
 - Explain how Convention over Configuration relates to Ruby on Rails
+- Explain what Ruby on Rails is and it's architectural components (rMVC)
 - List the most common folders in a rails application and describe their purpose
-- Create a new Ruby on Rails application
-- Build a Rails App with a RESTful interface
-- Follow Rails naming conventions when creating models, views and controllers
-- Use error driven development in Rails to identify common errors and implement solutions for them.
+- Describe what error driven development is, and how we might do it in Rails
 
 ## Framing (5/5)
+
+<!-- Add a section here on what a server-side applicaiton is, and how it's different
+from JS in the browser -->
 
 So what is Rails?
 Rails is a heavy duty web framework that follows relatively strict conventions in order to streamline our web development process.
@@ -23,7 +26,19 @@ Rails is a heavy duty web framework that follows relatively strict conventions i
 
 Before we get to deep into Rails specifically, we first need to understand the underlying architectural components and the lifecycle of requests.
 
+<!-- ALB - add a framing section here about what today's lesson will 'feel like',
+very theory heavy, understanding the pieces of this large framework before we dive
+into the details in subsequent lessons -->
+
+## Request / Response
+
+<!-- ALB - it'd be good to have a section here on the basics of req/response
+  plus HTTP
+-->
+
 ## rMVC (10/15)
+
+<!-- ALB - maybe move this down to the rails section after HTTP? -->
 
 ![rMVC](http://i.stack.imgur.com/Sf2OQ.png)
 
@@ -65,13 +80,15 @@ Browsers have different "ways of talking" to servers. These are called **methods
 
 Knowing REST is important because the vast majority of web developers have agreed to follow this same convention.
 
+<!-- ALB - Sinatra used below!  -->
+
 "GET" is one of these methods. It means the browser just wants to read (or "get") some information. When you write `get '/say_hi' do`, you're telling your Sinatra server how to respond when a browser says, "Hey, I'd like to get some information from the `say_hi` path."
 
 We make requests all the time -- especially GET requests. Everytime you go to your browser, enter a URL, and hit enter, you're actually making a GET request.
 
-### REST Methods
+### HTTP Methods (aka Verbs)
 
-REST defines five main methods, each of which corresponds to one of the CRUD functionalities.
+HTTP defines five main methods, each of which corresponds to one of the CRUD functionalities.
 
 | Method | Crud functionality |
 |---|---|
@@ -81,7 +98,9 @@ REST defines five main methods, each of which corresponds to one of the CRUD fun
 |PATCH| update |
 |DELETE| delete |
 
-So, wait -- there are 5 REST methods, but only 4 CRUD methods?
+So, wait -- there are 5 HTTP methods, but only 4 CRUD methods?
+
+<!-- ALB - maybe cut PATCH and just use PUT or vice versa -->
 
 PUT and PATCH are both used for updating. Whenever you update your Facebook profile you're probably making a PUT or PATCH request. The difference is PUT would be intended to completely replace your profile, whereas PATCH would be intended to just change a few fields of your profile.
 
@@ -124,7 +143,7 @@ Thankfully we don't have to:
 
 We can instead change `get '/students/1'` to `get '/students/:id'`
 
-### The params hash
+### The params hash (ALB maybe cut this?)
 
 Putting a colon `:` in front of `id` turned it into a variable called a path parameter.
 
@@ -159,7 +178,13 @@ Create routes for the following requests. The first one is done for you.
 7. Update homework submission #32 for assignment #3
 
 
+
 ## Rails (15/30)
+
+<!--  MVC goes here, followed by exercise, followed by a short section on
+WHY is Rails MVC, or rather why is our code broken up into these little pieces -->
+
+### Rails Walkthrough
 
 Let's walk through a Rails App to get comfortable with it's file structures and identify where we will be configuring the all of the concepts we discussed above! Enter [Tunr](https://github.com/ga-wdi-exercises/tunr_rails_views_controllers/tree/solution)! (yes, use the solution branch!)
 
@@ -196,6 +221,8 @@ Note that this isn't a server anyone else can see, but it's still a server.
 (ST-WG) Do you think that the developers of facebook created/updated the facebook application right on https://www.facebook.com? Were all the changes/updates tested on that server? I hope not!
 
 We need a way to develop in our own environment before we just put it on the web. As such, we're going to use our computers as local servers to host our applications until we move it to a production domain. In this way we can test/write code freely in our development environment.
+
+<!-- ALB: 5 minute exercise, look through app folder, compare to rMVC exercise? -->
 
 ### What does a Rails folder look like?
 
@@ -269,6 +296,8 @@ It also allows you to link script and css files in one place.
 - These define the relationships between models. In the case of Tunr, we have a simple one-many relationship: one artist has many songs
 - This allows you to delete songs any time the artist of the given song is deleted as well.
 
+<!-- ALB - maybe here write 2 questions each for rMVC as a mini quiz / CFU? -->
+
 ## Error Driven Development (30/105)
 One of the best part about Rails is the errors! What?
 
@@ -280,6 +309,11 @@ Lets go into our browser and go to `http://localhost:3000/mispelledartists` and 
 ## Closing(5/150)
 Review LO's
 
+<!-- ALB - maybe show garnet or other larger rails app for context as to why
+we use MVC, what a 'real app' looks like, etc  (make sure to frame that this is
+way larger than they'd build during the course, months of work by 10 devs) -->
+
+<!-- ALB - Maybe reiterate where we're heading next in each lesson. -->
 
 
 <!-- ## Rails (15/30)
