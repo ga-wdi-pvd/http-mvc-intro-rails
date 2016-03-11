@@ -94,7 +94,7 @@ REST provides a template for the way different paths should look:
 | PUT | `/students/1` | Update | Update the existing student whose ID is 1 with all new content |
 | DELETE | `/students/1` | Destroy | Delete the existing student whose ID is 1 |
 
-Note that the path doesn't contain any of the words describing the CRUD functionality that will be executed. That's the method's job.
+Note that the path doesn't contain any of the words describing the CRUD functionality that will be executed. That's the method's job. **The methods(verbs) tell the server what to do with the routes**
 
 Let's check out the [ESPN website](http://espn.go.com/mlb/team/_/name/bal). If we go to a specific team webpage, we can see this same sort of structure in the URL.
 
