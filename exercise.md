@@ -1,6 +1,7 @@
 #We Do – In person MVC role plays
 
-Student Roles:
+**Student Roles:**
+
 1.	request
 2.	controller
 3.	runner
@@ -8,7 +9,7 @@ Student Roles:
 5.	index view
 6.	show view
 
-**Request**
+**Requests**
 
 get “/artists”
 
@@ -50,10 +51,15 @@ Elsif receive a Delete request with an ID
 
 **Views**
 
-##Index View
+
+```ruby
+
+Index View
 
 <ul>
+
    <li>
+
       <a href="/artists/<%= artist.id %>">
 
 		#LIST ARTISTS’ NAMES BELOW:
@@ -78,20 +84,23 @@ Elsif receive a Delete request with an ID
 	<%= ________________________ %>
 
       </a>
+
     </li>
+
 </ul>
+```
 
 
-##Show View
+```html
+Show View
 
 Add Artist Name Below
-
 
 <h2> ____________________ </h2>
 
 <ul>
 
-		#List Songs’ Titles Below
+		List Songs’ Titles Below
 
 
    <li> <%=_____________________ %> </li>
@@ -102,3 +111,4 @@ Add Artist Name Below
 
 
 </ul>
+```
