@@ -1,4 +1,4 @@
-#We Do – In person MVC role plays
+# We Do – In person MVC role plays
 
 **Student Roles:**
 
@@ -22,35 +22,33 @@ delete “/artists/:4”
 
 **Controller Statement List**
 
-If receive a GET request
-   If no ID
-	Then Ask Model for All Artists
-   	Render View
-	Respond to Client
+- If receive a GET request
+  - If no ID
+    - Then Ask Model for All Artists
+  - Render View
+  - Respond to Client
 
- Elsif  has ID
-	Then Ask Model for Artist with given ID
-	Render View
-	Respond to Client
+- Elsif  has ID
+  - Then Ask Model for Artist with given ID
+  - Render View
+  - Respond to Client
 
-Elsif  receive a POST request
-	Then Ask Model to Add New Artist Data
-	Render View
-	Respond to Client
+- Elsif  receive a POST request
+  - Then Ask Model to Add New Artist Data
+  - Render View
+  - Respond to Client
 
-Elsif  receive a PUT request with an ID
-	Then Ask Model to Edit Artist Data
-	Render View
-	Respond to Client
+- Elsif  receive a PUT request with an ID
+  - Then Ask Model to Edit Artist Data
+  - Render View
+  - Respond to Client
 
-Elsif receive a Delete request with an ID
-	Then Ask Model to Delete Artist
-	Render View
-	Respond to Client
-
+- Elsif receive a Delete request with an ID
+  - Then Ask Model to Delete Artist
+  - Render View
+  - Respond to Client
 
 **Views**
-
 
 ```ruby
 
@@ -89,7 +87,6 @@ Index View
 
 </ul>
 ```
-
 
 ```html
 Show View
