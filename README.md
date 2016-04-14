@@ -3,6 +3,7 @@
 ## Learning Objectives
 
 - Describe the role of a web framework such as Rails
+- Describe the components of an MVC application
 - Diagram & annotate the lifecycle of an HTTP request in Ruby on Rails
 - Explain how Ruby on Rails implements MVC
 - List the most common folders in a rails application and describe their purpose
@@ -11,54 +12,111 @@
 
 ## Framing (10 min)
 
-Let's look at [Facebook](https://www.facebook.com/). What would be missing if Zuck only used HTML, CSS, and JS to build it?
-> We'd have to create a new account every time we open the app.
-> We'd have to repopulate our friend list every time we opened it.
-> Our status would be lost every time we refresh the browser
+As our applications get more complicated, we need ways to help manage the
+*complexity* and *size*. We have lots of tools to help us do this.
 
-So, what is a server-side application?
-The generally accepted practice for building a web application is to have your server deliver your homepage and handle saving and loading persistent data, based on simple messages, from the browser
+What are some some of these tool?
 
-So what is Rails?
-Rails is a heavy duty web server-side framework that follows relatively strict conventions in order to streamline our web development process.
+* Breaking code into separate files
+  * Each file has code related to one 'job'
+* OOP - model our program as objects with data and behavior (properties and methods)
 
-> It is designed to make programming web applications easier by making assumptions about what every developer needs to get started. It makes the assumption that there is the "best" way to do things, and it's designed to encourage that way - and in some cases to discourage alternatives. - Ruby on Rails guide
+There are other tools we have as programmers. One tool is the idea of a *design
+pattern*. A design pattern is a higher-level pattern that shapes how we build
+and structure our code.
 
-> Rails is a framework with lots of rules/conventions. Pay attention to the conventions you'll need to follow for rails throughout the week.
+One such pattern for designing applications is MVC, which stands for *Model,
+View, Controller*.
 
-This lesson will not include writing much (if any) code at all. We are going to take a high-level theoretical approach. It's extremely important to understand the underlying concepts before jumping into such a heavy duty framework such as Rails.
+We're going to talk about MVC, because that's the pattern that Rails implements.
 
-## Rails
+If you've seen Sinatra, you've already seen a pattern that is very close to MVC,
+but not quite. If you've seen ActiveRecord, then you've already seen a library
+that helps you build *models*.
 
-## rMVC (10 min)
+MVC can be used in lots of types of applications... there are MVC-style
+frameworks for building native desktop apps (like Microsoft's ASP.net or Cocoa
+for Mac), mobile apps (iOS and Android toolkits can follow MVC) or other web
+frameworks like Django (in Python) or CakePHP.
+
+MVC is *not* the only design pattern for applications, we'll see somewhat
+related, but different patterns in JS frameworks like Angular or Backbone (MV*).
+
+This lesson will not include writing much (if any) code at all. We are going to
+take a high-level theoretical approach. It's extremely important to understand
+the underlying concepts before jumping into such a heavy duty framework such as
+Rails.
+
+## What is MVC?
+
+MVC is all about separating your code into separate sections:
+
+* *Models* - which represent the data in your application, and help you save, load,
+update, validate, etc.
+* *Views* - which describe how to present your data in a way that the user can
+see and interact with.
+* *Controllers* - which are responsible for responding to user requests, and
+contain the code for implementing features, using models and views to help them
+get the job done.
+
+## Rails and MVC (10)
+
+Because Rails is for Web Apps, there's one additional component it adds to MVC,
+a router. Thus we sometimes say that Rails is built around rMVC - router, models,
+views and controller.
 
 ![rMVC](http://i.stack.imgur.com/Sf2OQ.png)
 
-The design pattern that rails is built around is rMVC - router, model, view and controller.
-
 Life Cycle of the request/response in Rails:
 
-1. A user of our web application submits a request to our application's server. It can come in a myriad of ways. Maybe someone typing in a URL and hitting enter or maybe a user submitting a form on our application.
+1. A user of our web application submits a request to our application's server.
+It can come in a myriad of ways. Maybe someone typing in a URL and hitting enter
+or maybe a user submitting a form on our application.
 
 2. The request hits the router of the application.
 
-3. The application then either doesn't recognize the route (error) or it does recognize it(route) and sends it to a controller.
+3. The application then either doesn't recognize the route (error) or it does
+recognize it (route) and sends it to a controller.
 
-4. Once the request hits the controller, it's then going to query the database through Active Record(the model) for the information specified in the controller.
+4. Once the controller gets the request, it performs any necessary actions. This
+might include fetching, updating, deleting, or creating information using one
+or more models.
 
-5. Once the controller has the information from the model that it needs it sends it to the view
+5. Once the controller has performed any actions / retrieved any inforamation
+from the model(s), it uses a view to *render* an HTML page.
 
-6. The view takes the objects from the controller and sends a response to the user.
+6. The rendered view is then sent back to the client as a response.
 
 ## Break (10 min)
 
 ## We Do: In person MVC (30 min)
 
+## Rails Apps
+
+### Convention Over Configuration in Rails
+
+So what is Rails? Rails is a powerful, full-featured web framework that follows
+relatively strict conventions in order to streamline our web development
+process.
+
+> It is designed to make programming web applications easier by making
+assumptions about what every developer needs to get started. It makes the
+assumption that there is a "best" way to do things, and it's designed to
+encourage that way - and in some cases to discourage alternatives. - Ruby on
+Rails guide
+
+> Rails is a framework with lots of rules/conventions. Pay attention to the
+conventions you'll need to follow for Rails throughout the week.
+
 ### Rails Walkthrough (5 min)
 
-Let's walk through a Rails App to get comfortable with it's file structures and identify where we will be configuring the all of the concepts we discussed above! Enter [Tunr](https://github.com/ga-wdi-exercises/tunr_rails_views_controllers/tree/solution)! (yes, use the solution branch!)
+Let's walk through a Rails App to get comfortable with it's file structures and
+identify where we will be configuring the all of the concepts we discussed
+above!  Enter [Tunr](https://github.com/ga-wdi-exercises/tunr_rails_views_controllers/tree/solution)!
+(yes, use the solution branch!)
 
-As we go through the app and code, you will notice how everything is abstracted into individual files and directories. Why?
+As we go through the app and code, you will notice how everything is abstracted
+into individual files and directories. Why?
 
 - Separation of concerns
 - Readability
@@ -74,28 +132,29 @@ Instructions:
 
 * Note anything that reminds you of our in person exercise!
 
-### What does a Rails folder look like? (5 min)
+### What does a Rails App look like? (5 min)
 
-As soon as we generate a Rails app, you can see there are already many folders and files generated from just the one command.
-
-* Note: when we first generated Tunr, we ran the following command:
-
-**DO NOT run this command during this lesson**
-
-```bash
-$ rails new tunr -d postgresql
-```
-
+As soon as we generate a Rails app, you can see there are already many folders
+and files generated from just the one command.
 
 ![Rails folder structure](images/rails_folders.png)
 
-It can be quite daunting at first. It'll take some getting used to, but more importantly, you're already familiar with a lot of the stuff in rails we'll be using. Additionally, you can ignore a lot of the other stuff until you need to incorporate some weird gem/dependency. So we started learning about "convention over configuration" during the class for Active Record. As we scale to a rails size application, We can quickly see the need for conventions in such a massive framework. Specifically for folder and file structure, rails can be quite particular about how we name things. Throughout this week we'll be going through a bunch of different conventions we need to follow.
+It can be quite daunting at first. It'll take some getting used to, but more
+importantly, you're already familiar with a lot of the stuff in rails we'll be
+using. Additionally, you can ignore a lot of the other stuff until you need to
+incorporate some weird gem/dependency. So we started learning about "convention
+over configuration" during the class for Active Record. As we scale to a rails
+size application, We can quickly see the need for conventions in such a massive
+framework. Specifically for folder and file structure, rails can be quite
+particular about how we name things. Throughout this week we'll be going through
+a bunch of different conventions we need to follow.
 
 The first folder we'll talk about is the `app` folder:
 
 ![Rails app folder](images/rails_app.png)
 
-This folder is the the most important folder in your entire application. It'll have pretty much most of the programs functionality resting in it.
+This folder is the the most important folder in your entire application. It'll
+have pretty much most of the programs functionality resting in it.
 
 - `assets` - This will be where all of your CSS, JS, and image files belong.
 - `controllers` - This folder will contain all controllers.(ST - WG) What do controllers do for us?
@@ -104,27 +163,37 @@ This folder is the the most important folder in your entire application. It'll h
 - `models` - this folder will contain our AR models.
 - `views` - This folder contains all of the views in this application.
 
-> These folders are easily the most important part of your application. Not to say the other parts aren't.
+> These folders are easily the most important part of your application. Not to
+say the other parts aren't.
 
-The `bin` folder contains binstubs. Not going over this in the scope of this class, but basically they're used as wrappers around ruby gem executables(like pry) to be used in lieu of `bundle exec`
+The `bin` folder contains binstubs. Not going over this in the scope of this
+class, but basically they're used as wrappers around ruby gem executables(like
+pry) to be used in lieu of `bundle exec`
 
-The `config` is another folder that's pretty important. The file you'll most be visiting is `routes.rb` This is the router in rMVC.
+The `config` is another folder that's pretty important. The file you'll most be
+visiting is `routes.rb` This is the router in rMVC.
 
-The `db` folder is one you'll be working in for a bit of time as well. This contains the seed file but additionally it will also contain your migrations which you'll be going over in the next class.
+The `db` folder is one you'll be working in for a bit of time as well. This
+contains the seed file but additionally it will also contain your migrations
+which you'll be going over in the next class.
 
-In the main directory there are a couple of files your familiar with, the `Gemfile` and `Gemfile.lock`
+In the main directory there are a couple of files your familiar with, the
+`Gemfile` and `Gemfile.lock`
 
 ### Starting a Rails Server (5 min)
 
 Let's go ahead and look at the final application before we dive into the code.
+
 >if you want to follow along, clone it down and checkout the solution branch
 
 In my console, I'm going to run the following command:
+
 ```bash
 $ rails s
 ```
 
 We should see something like:
+
 ```
 => Booting WEBrick
 => Rails 4.2.4 application starting in development on http://localhost:3000
@@ -142,17 +211,15 @@ And enter `http://localhost:3000` in our browser.
 
 >The number `3000` is the port number. This is the default port number in a Rails Application.
 
-Note that this isn't a server anyone else can see, but it's still a server.
-
-(ST-WG) Do you think that the developers of facebook created/updated the facebook application right on https://www.facebook.com? Were all the changes/updates tested on that server? I hope not!
-
-We need a way to develop in our own environment before we just put it on the web. As such, we're going to use our computers as local servers to host our applications until we move it to a production domain. In this way we can test/write code freely in our development environment.
-
 ## Break (10 min)
 
-### Tunr (20 min)
 
-- Let's GET artist info
+### Walkthrough of Tunr (20 min)
+
+Let's make a few requests in our browser, and trace the path of the code runs
+as a result of each request:
+
+- GET artist info
 - PUT changed info on the artist page
 - POST a new artist
 - DELETE an artist
@@ -193,11 +260,14 @@ It also allows you to link script and css files in one place.
 - These are ActiveRecord models!
 - These define the relationships between models. In the case of Tunr, we have a simple one-many relationship: one artist has many songs
 
-## Error Driven Development
+## Reading Rails Errors
 One of the best part about Rails is the errors! What?
 
-Rails provides detailed, and understandable, errors that allow you to take the necessary steps to build a working app. We won't go too deep into them during this class, but you will get plenty of exposure during the upcoming lessons!
-Lets go into our browser and go to `http://localhost:3000/mispelledartists` and we'll see:
+Rails provides detailed, and understandable, errors that allow you to take the
+necessary steps to build a working app. We won't go too deep into them during
+this class, but you will get plenty of exposure during the upcoming lessons!
+Lets go into our browser and go to `http://localhost:3000/mispelledartists` and
+we'll see:
 
 ![no route error](images/no_route.png)
 
