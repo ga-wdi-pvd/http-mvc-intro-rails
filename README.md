@@ -1,4 +1,4 @@
-# http-mvc-intro-rails
+# Intro to MVC and Rails
 
 ## Learning Objectives
 
