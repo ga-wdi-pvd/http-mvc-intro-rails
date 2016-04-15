@@ -134,6 +134,14 @@ Instructions:
 
 ### What does a Rails App look like? (5 min)
 
+* Note: when we first generated Tunr, we ran the following command:
+
+**DO NOT run this command during this lesson**
+
+```bash
+$ rails new tunr -d postgresql
+```
+
 As soon as we generate a Rails app, you can see there are already many folders
 and files generated from just the one command.
 
