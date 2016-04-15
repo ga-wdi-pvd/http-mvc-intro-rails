@@ -186,8 +186,29 @@ Let's go ahead and look at the final application before we dive into the code.
 
 >if you want to follow along, clone it down and checkout the solution branch
 
-In my console, I'm going to run the following command:
+In my console, I'm going to run the following commands:
 
+- this loads & sets up the local dependencies
+```bash
+$ bundle install
+```
+
+- this is similar to `psql dbcreate <database name>` (plus more)
+```bash
+$ rake db:create
+```
+
+- this command sets up the schema (plus more)
+```bash
+$ rake db:migrate
+```
+
+- this command runs the seeds file to seed the database
+```bash
+$ rake db:seed
+```
+
+- this command starts the server
 ```bash
 $ rails s
 ```
