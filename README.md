@@ -2,154 +2,121 @@
 
 ## Learning Objectives
 
-- Explain the role of a server-side web application
-- Explain the lifecycle of an HTTP request in Ruby on Rails
-- Understand the RESTful routes and how they relate to an HTTP request
-- Define example RESTful routes with URL parameters
-- Explain how Convention over Configuration relates to Ruby on Rails
-- Explain what Ruby on Rails is and it's architectural components (rMVC)
+- Describe the role of a web framework such as Rails
+- Describe the components of an MVC application
+- Diagram & annotate the lifecycle of an HTTP request in Ruby on Rails
+- Explain how Ruby on Rails implements MVC
 - List the most common folders in a rails application and describe their purpose
-- Describe what error driven development is, and how we might do it in Rails
+- Explain how Convention over Configuration relates to Ruby on Rails
+- Describe how to read understand and fix errors in a Rails application
 
 ## Framing (10 min)
 
-Let's look at [Facebook](https://www.facebook.com/). What would be missing if Zuck only used HTML, CSS, and JS to build it?
-> We'd have to create a new account every time we open the app.
-> We'd have to repopulate our friend list every time we opened it.
-> Our status would be lost every time we refresh the browser
+As our applications get more complicated, we need ways to help manage the
+*complexity* and *size*. We have lots of tools to help us do this.
 
-So, what is a server-side application?
-The generally accepted practice for building a web application is to have your server deliver your homepage and handle saving and loading persistent data, based on simple messages, from the browser
+What are some some of these tool?
 
-So what is Rails?
-Rails is a heavy duty web server-side framework that follows relatively strict conventions in order to streamline our web development process.
+* Breaking code into separate files
+  * Each file has code related to one 'job'
+* OOP - model our program as objects with data and behavior (properties and methods)
 
-> It is designed to make programming web applications easier by making assumptions about what every developer needs to get started. It makes the assumption that there is the "best" way to do things, and it's designed to encourage that way - and in some cases to discourage alternatives. - Ruby on Rails guide
+There are other tools we have as programmers. One tool is the idea of a *design
+pattern*. A design pattern is a higher-level pattern that shapes how we build
+and structure our code.
 
-> Rails is a framework with lots of rules/conventions. Pay attention to the conventions you'll need to follow for rails throughout the week.
+One such pattern for designing applications is MVC, which stands for *Model,
+View, Controller*.
 
-Before we get to deep into Rails specifically, we first need to understand the underlying architectural components and the lifecycle of requests.
+We're going to talk about MVC, because that's the pattern that Rails implements.
 
-This lesson will not include writing much (if any) code at all. We are going to take a high-level theoretical approach. It's extremely important to understand the underlying concepts before jumping into such a heavy duty framework such as Rails.
+If you've seen Sinatra, you've already seen a pattern that is very close to MVC,
+but not quite. If you've seen ActiveRecord, then you've already seen a library
+that helps you build *models*.
 
-## Request / Response
+MVC can be used in lots of types of applications... there are MVC-style
+frameworks for building native desktop apps (like Microsoft's ASP.net or Cocoa
+for Mac), mobile apps (iOS and Android toolkits can follow MVC) or other web
+frameworks like Django (in Python) or CakePHP.
 
-Open our browsers and type in ESPN to the URL. What's happening?
-Let's identify what is the request, and what is the response?
+MVC is *not* the only design pattern for applications, we'll see somewhat
+related, but different patterns in JS frameworks like Angular or Backbone (MV*).
 
-## Intro to HTTP and REST
+This lesson will not include writing much (if any) code at all. We are going to
+take a high-level theoretical approach. It's extremely important to understand
+the underlying concepts before jumping into such a heavy duty framework such as
+Rails.
 
-### HTTP (5 min)
+## What is MVC?
 
-**Hypertext Transfer Protocol** (HTTP) is a method for encoding and transporting information between a client (such as a web browser) and a web server. HTTP is the primary protocol for transmission of information across the Internet.
+MVC is all about separating your code into separate sections:
 
-A server's job is to respond to HTTP requests. In order to talk about how Rails functions, we need to talk about how HTTP requests work.
+* *Models* - which represent the data in your application, and help you save, load,
+update, validate, etc.
+* *Views* - which describe how to present your data in a way that the user can
+see and interact with.
+* *Controllers* - which are responsible for responding to user requests, and
+contain the code for implementing features, using models and views to help them
+get the job done.
 
-Every **HTTP request** consists of a request **method** and **path**. The path is the URL to which the request is being sent. That's pretty familiar. However, your browser always sends that request in a particular way that gives the server a hint as to the "point" of the request. This "particular way" is the method.
+## Rails and MVC (10)
 
-Once the request is made, the server grabs all sorts of information and begins to build its **response**. It renders the data on a view (HTML), and then sends it back to the client to see it on the browser.
-
-### HTTP Methods (5 min)
-
-HTTP defines the following methods, each of which corresponds to one of the CRUD functionalities.
-
-| Method | Crud functionality |
-|---|---|
-|GET| read |
-|POST| create |
-|PUT| update |
-|DELETE| delete |
-
-#### What's the difference at a technical level between a GET and a POST request?
-
-There really isn't a whole lot of difference. The browser sends the request more-or-less the same way. The difference is in how the data comprising the request is "packaged".
-
-We'll see this in greater detail later. For now, just think that, say, a GET request is sent in a plain old white envelope, while a POST request is sent in a red envelope with "ACTION REQUIRED" written on it.
-
-### REST (5 min)
-
-REST, or REpresentational State Transfer, is a convention for what these HTTP methods should be to standardize all the communication between browsers and servers.
-
-Knowing REST is important because the vast majority of web developers have agreed to follow this same convention.
-
-"GET" is one of these methods. It means the browser just wants to read (or "get") some information. When you write `get '/say_hi' do`, you're telling your server how to respond when a browser says, "Hey, I'd like to get some information from the `say_hi` path."
-
-We make requests all the time -- especially GET requests. Everytime you go to your browser, enter a URL, and hit enter, you're actually making a GET request.
-
-### RESTful Routes (5 min)
-
-A **route** is a **method** plus a **path**:
-
-**Route = Method + Path**
-
-Each route results in an **action**.
-
-REST provides a template for the way different paths should look:
-
-| Method | Path | Action | Used for |
-| --- | --- | --- | --- |
-| GET | `/students` | Index | Read information about all students |
-| POST | `/students` | Create | Create a new student |
-| GET | `/students/1` | Show | Read information about the student whose ID is 1 |
-| PUT | `/students/1` | Update | Update the existing student whose ID is 1 with all new content |
-| DELETE | `/students/1` | Destroy | Delete the existing student whose ID is 1 |
-
-Note that the path doesn't contain any of the words describing the CRUD functionality that will be executed. That's the method's job. **The methods(verbs) tell the server what to do with the routes**
-
-Let's check out the [ESPN website](http://espn.go.com/mlb/team/_/name/bal). If we go to a specific team webpage, we can see this same sort of structure in the URL.
-
-#### Path Parameters
-
-Ideally, we would NOT want to hard code an id for each path for students. Imagine there were over 200 students in an high school class!
-
-Thankfully we don't have to:
-
-We can instead change `get '/students/1'` to `get '/students/:id'`
-
-### You Do - Create routes (10 min)
-
-Create routes for the following requests. The first one is done for you.
-
-1. Create a new animal
-  - `POST /animals`
-2. Delete an animal
-3. Update an existing homework assignment
-4. Create a new class at GA.
-5. View all students in WDI.
-6. Update the info for an animal with 3 as its id.
-7. Update homework submission #32 for assignment #3
-
-## Rails
-
-## rMVC (10 min)
+Because Rails is for Web Apps, there's one additional component it adds to MVC,
+a router. Thus we sometimes say that Rails is built around rMVC - router, models,
+views and controller.
 
 ![rMVC](http://i.stack.imgur.com/Sf2OQ.png)
 
-The design pattern that rails is built around is rMVC - router, model, view and controller.
-
 Life Cycle of the request/response in Rails:
 
-1. A user of our web application submits a request to our application's server. It can come in a myriad of ways. Maybe someone typing in a URL and hitting enter or maybe a user submitting a form on our application.
+1. A user of our web application submits a request to our application's server.
+It can come in a myriad of ways. Maybe someone typing in a URL and hitting enter
+or maybe a user submitting a form on our application.
 
 2. The request hits the router of the application.
 
-3. The application then either doesn't recognize the route (error) or it does recognize it(route) and sends it to a controller.
+3. The application then either doesn't recognize the route (error) or it does
+recognize it (route) and sends it to a controller.
 
-4. Once the request hits the controller, it's then going to query the database through Active Record(the model) for the information specified in the controller.
+4. Once the controller gets the request, it performs any necessary actions. This
+might include fetching, updating, deleting, or creating information using one
+or more models.
 
-5. Once the controller has the information from the model that it needs it sends it to the view
+5. Once the controller has performed any actions / retrieved any inforamation
+from the model(s), it uses a view to *render* an HTML page.
 
-6. The view takes the objects from the controller and sends a response to the user.
+6. The rendered view is then sent back to the client as a response.
 
 ## Break (10 min)
 
 ## We Do: In person MVC (30 min)
 
+## Rails Apps
+
+### Convention Over Configuration in Rails
+
+So what is Rails? Rails is a powerful, full-featured web framework that follows
+relatively strict conventions in order to streamline our web development
+process.
+
+> It is designed to make programming web applications easier by making
+assumptions about what every developer needs to get started. It makes the
+assumption that there is a "best" way to do things, and it's designed to
+encourage that way - and in some cases to discourage alternatives. - Ruby on
+Rails guide
+
+> Rails is a framework with lots of rules/conventions. Pay attention to the
+conventions you'll need to follow for Rails throughout the week.
+
 ### Rails Walkthrough (5 min)
 
-Let's walk through a Rails App to get comfortable with it's file structures and identify where we will be configuring the all of the concepts we discussed above! Enter [Tunr](https://github.com/ga-wdi-exercises/tunr_rails_views_controllers/tree/solution)! (yes, use the solution branch!)
+Let's walk through a Rails App to get comfortable with it's file structures and
+identify where we will be configuring the all of the concepts we discussed
+above!  Enter [Tunr](https://github.com/ga-wdi-exercises/tunr_rails_views_controllers/tree/solution)!
+(yes, use the solution branch!)
 
-As we go through the app and code, you will notice how everything is abstracted into individual files and directories. Why?
+As we go through the app and code, you will notice how everything is abstracted
+into individual files and directories. Why?
 
 - Separation of concerns
 - Readability
@@ -165,9 +132,7 @@ Instructions:
 
 * Note anything that reminds you of our in person exercise!
 
-### What does a Rails folder look like? (5 min)
-
-As soon as we generate a Rails app, you can see there are already many folders and files generated from just the one command.
+### What does a Rails App look like? (5 min)
 
 * Note: when we first generated Tunr, we ran the following command:
 
@@ -177,16 +142,27 @@ As soon as we generate a Rails app, you can see there are already many folders a
 $ rails new tunr -d postgresql
 ```
 
+As soon as we generate a Rails app, you can see there are already many folders
+and files generated from just the one command.
 
 ![Rails folder structure](images/rails_folders.png)
 
-It can be quite daunting at first. It'll take some getting used to, but more importantly, you're already familiar with a lot of the stuff in rails we'll be using. Additionally, you can ignore a lot of the other stuff until you need to incorporate some weird gem/dependency. So we started learning about "convention over configuration" during the class for Active Record. As we scale to a rails size application, We can quickly see the need for conventions in such a massive framework. Specifically for folder and file structure, rails can be quite particular about how we name things. Throughout this week we'll be going through a bunch of different conventions we need to follow.
+It can be quite daunting at first. It'll take some getting used to, but more
+importantly, you're already familiar with a lot of the stuff in rails we'll be
+using. Additionally, you can ignore a lot of the other stuff until you need to
+incorporate some weird gem/dependency. So we started learning about "convention
+over configuration" during the class for Active Record. As we scale to a rails
+size application, We can quickly see the need for conventions in such a massive
+framework. Specifically for folder and file structure, rails can be quite
+particular about how we name things. Throughout this week we'll be going through
+a bunch of different conventions we need to follow.
 
 The first folder we'll talk about is the `app` folder:
 
 ![Rails app folder](images/rails_app.png)
 
-This folder is the the most important folder in your entire application. It'll have pretty much most of the programs functionality resting in it.
+This folder is the the most important folder in your entire application. It'll
+have pretty much most of the programs functionality resting in it.
 
 - `assets` - This will be where all of your CSS, JS, and image files belong.
 - `controllers` - This folder will contain all controllers.(ST - WG) What do controllers do for us?
@@ -195,27 +171,58 @@ This folder is the the most important folder in your entire application. It'll h
 - `models` - this folder will contain our AR models.
 - `views` - This folder contains all of the views in this application.
 
-> These folders are easily the most important part of your application. Not to say the other parts aren't.
+> These folders are easily the most important part of your application. Not to
+say the other parts aren't.
 
-The `bin` folder contains binstubs. Not going over this in the scope of this class, but basically they're used as wrappers around ruby gem executables(like pry) to be used in lieu of `bundle exec`
+The `bin` folder contains binstubs. Not going over this in the scope of this
+class, but basically they're used as wrappers around ruby gem executables(like
+pry) to be used in lieu of `bundle exec`
 
-The `config` is another folder that's pretty important. The file you'll most be visiting is `routes.rb` This is the router in rMVC.
+The `config` is another folder that's pretty important. The file you'll most be
+visiting is `routes.rb` This is the router in rMVC.
 
-The `db` folder is one you'll be working in for a bit of time as well. This contains the seed file but additionally it will also contain your migrations which you'll be going over in the next class.
+The `db` folder is one you'll be working in for a bit of time as well. This
+contains the seed file but additionally it will also contain your migrations
+which you'll be going over in the next class.
 
-In the main directory there are a couple of files your familiar with, the `Gemfile` and `Gemfile.lock`
+In the main directory there are a couple of files your familiar with, the
+`Gemfile` and `Gemfile.lock`
 
 ### Starting a Rails Server (5 min)
 
 Let's go ahead and look at the final application before we dive into the code.
+
 >if you want to follow along, clone it down and checkout the solution branch
 
-In my console, I'm going to run the following command:
+In my console, I'm going to run the following commands:
+
+- this loads & sets up the local dependencies
+```bash
+$ bundle install
+```
+
+- this is similar to `psql dbcreate <database name>` (plus more)
+```bash
+$ rake db:create
+```
+
+- this command sets up the schema (plus more)
+```bash
+$ rake db:migrate
+```
+
+- this command runs the seeds file to seed the database
+```bash
+$ rake db:seed
+```
+
+- this command starts the server
 ```bash
 $ rails s
 ```
 
 We should see something like:
+
 ```
 => Booting WEBrick
 => Rails 4.2.4 application starting in development on http://localhost:3000
@@ -233,17 +240,15 @@ And enter `http://localhost:3000` in our browser.
 
 >The number `3000` is the port number. This is the default port number in a Rails Application.
 
-Note that this isn't a server anyone else can see, but it's still a server.
-
-(ST-WG) Do you think that the developers of facebook created/updated the facebook application right on https://www.facebook.com? Were all the changes/updates tested on that server? I hope not!
-
-We need a way to develop in our own environment before we just put it on the web. As such, we're going to use our computers as local servers to host our applications until we move it to a production domain. In this way we can test/write code freely in our development environment.
-
 ## Break (10 min)
 
-### Tunr (20 min)
 
-- Let's GET artist info
+### Walkthrough of Tunr (20 min)
+
+Let's make a few requests in our browser, and trace the path of the code runs
+as a result of each request:
+
+- GET artist info
 - PUT changed info on the artist page
 - POST a new artist
 - DELETE an artist
@@ -284,11 +289,14 @@ It also allows you to link script and css files in one place.
 - These are ActiveRecord models!
 - These define the relationships between models. In the case of Tunr, we have a simple one-many relationship: one artist has many songs
 
-## Error Driven Development
+## Reading Rails Errors
 One of the best part about Rails is the errors! What?
 
-Rails provides detailed, and understandable, errors that allow you to take the necessary steps to build a working app. We won't go too deep into them during this class, but you will get plenty of exposure during the upcoming lessons!
-Lets go into our browser and go to `http://localhost:3000/mispelledartists` and we'll see:
+Rails provides detailed, and understandable, errors that allow you to take the
+necessary steps to build a working app. We won't go too deep into them during
+this class, but you will get plenty of exposure during the upcoming lessons!
+Lets go into our browser and go to `http://localhost:3000/mispelledartists` and
+we'll see:
 
 ![no route error](images/no_route.png)
 
