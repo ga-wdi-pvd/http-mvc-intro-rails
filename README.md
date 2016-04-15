@@ -262,32 +262,57 @@ as a result of each request:
 - Why are we including a symbol again in `artists/:id` in our path?
 - What does `artists#index` and `shows#index` referring to?
 
->Answers
+<details>
+<summary>
+Answers
+</summary>
+<br>
 - config/routes.rb
+<br>
 - `GET` request example: `get "artists" => "artists#index"``
+<br>
 - Can dynamically change the id of artist and grab those params as needed in our application
+<br>
 - On the right side of the hash rocket `"artists#index"` its specifying the ***controller*** and an ***action*** within that controller. In this case, when a user of our site accesses the `artists` path(`http://localhost:3000/artists`), that request will be sent to the artists controller and execute the index action inside that controller.
+<br>
+</details>
 
 #### Views
 - What is this `index.html.erb` file type?
 - Does it matter what we name our views, for example, does it matter if it's plural or singular?
 - What is the layouts directory used for?
 
->Answers
+<details>
+<summary>
+Answers
+</summary>
+<br>
 - html.erb is an html file type that allows for in line ruby code. As we will see, developers use embedded ruby tags such as ```<% %>```
+<br>
 - Yes! it does matter that we make these folder names plural. Rails convention says to make the folders in the views match up with the controllers
+<br>
 - This creates the base layout of your page. If you have a nav bar that should remain throughout your app, the layout is the place to be!
 It also allows you to link script and css files in one place.
+<br>
+</details>
 
 #### Models
 - Where does the model get used?
 - Where have we seen models like this before?
 - What does has_many and belongs_to mean?
 
->Answers
+<details>
+<summary>
+Answers
+</summary>
+<br>
 - corresponding controllers
+<br>
 - These are ActiveRecord models!
+<br>
 - These define the relationships between models. In the case of Tunr, we have a simple one-many relationship: one artist has many songs
+<br>
+</details>
 
 ## Reading Rails Errors
 One of the best part about Rails is the errors! What?
