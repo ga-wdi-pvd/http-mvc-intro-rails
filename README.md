@@ -1,4 +1,4 @@
-# http-mvc-intro-rails
+# Intro to MVC and Rails
 
 ## Learning Objectives
 
@@ -15,7 +15,7 @@
 As our applications get more complicated, we need ways to help manage the
 *complexity* and *size*. We have lots of tools to help us do this.
 
-What are some some of these tool?
+What are some some of these tools?
 
 * Breaking code into separate files
   * Each file has code related to one 'job'
@@ -126,7 +126,7 @@ into individual files and directories. Why?
 
 Instructions:
 
-* Fork and Clone [Tunr](https://github.com/ga-wdi-exercises/tunr_rails_views_controllers/tree/solution)
+* Clone (no need to fork) [Tunr](https://github.com/ga-wdi-exercises/tunr_rails_views_controllers/tree/solution)
 
 * Students should open up the ```app``` folder and explore the code on their own.
 
