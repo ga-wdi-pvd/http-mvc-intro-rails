@@ -126,7 +126,7 @@ into individual files and directories. Why?
 
 Instructions:
 
-* Fork and Clone [Tunr](https://github.com/ga-wdi-exercises/tunr_rails_views_controllers/tree/solution)
+* Clone (no need to fork) [Tunr](https://github.com/ga-wdi-exercises/tunr_rails_views_controllers/tree/solution)
 
 * Students should open up the ```app``` folder and explore the code on their own.
 
