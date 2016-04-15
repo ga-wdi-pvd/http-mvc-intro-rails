@@ -15,7 +15,7 @@
 As our applications get more complicated, we need ways to help manage the
 *complexity* and *size*. We have lots of tools to help us do this.
 
-What are some some of these tool?
+What are some some of these tools?
 
 * Breaking code into separate files
   * Each file has code related to one 'job'
