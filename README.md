@@ -18,8 +18,6 @@ As our applications get more complicated, we need ways to help manage the
 <details>
 <summary>What are some some of these tools?</summary>
 
-<br>
-
 * Breaking code into separate files
   * Each file has code related to one 'job'
 * OOP - model our program as objects with data and behavior (properties and methods)
@@ -57,11 +55,11 @@ Rails.
 
 MVC is all about separating your code into separate sections:
 
-* *Models* - which represent the data in your application, and help you save, load,
+* **Models** - which represent the data in your application, and help you save, load,
 update, validate, etc.
-* *Views* - which describe how to present your data in a way that the user can
+* **Views** - which describe how to present your data in a way that the user can
 see and interact with.
-* *Controllers* - which are responsible for responding to user requests, and
+* **Controllers** - which are responsible for responding to user requests, and
 contain the code for implementing features, using models and views to help them
 get the job done.
 
