@@ -8,8 +8,13 @@
 
 ## Request / Response
 
-Open our browsers and type in ESPN to the URL. What's happening?
-Let's identify what is the request, and what is the response?
+Open our browsers and type ESPN into the URL and hit enter. What's happens?
+
+Well, pretty much to our eyes as humans, we see the screen flash, maybe a loading icon appears, then we watch as a new webpage's content is loaded.  Now depending on our internet connection, loading that page could take anywhere between a split second to a few minutes, however in that flash of time, an incredible amount of communication is happening on the back end to bring us that page.
+
+That tiny flash or flicker we see, is the only visual clue that something is changing, but in reality that timespan is the entire lifespan of what we call the **request - response lifecycle**.
+
+Today, we are going to talk about the different components that shape how we send and receive data across the internet, and learn how we can harness these rules to build our own full stack web applications.
 
 ## Intro to HTTP and REST
 
@@ -24,6 +29,8 @@ Every **HTTP request** consists of a request **method** and **path**. The path i
 Once the request is made, the server grabs all sorts of information and begins to build its **response**. It renders the data on a view (HTML), and then sends it back to the client to see it on the browser.
 
 ### HTTP Methods (5 min)
+
+In order to identify what to do with the information sent from the browser, the HTTP protocol establishes a set list of **methods** to describe the nature of the *request*, and therefore informs the server of the subsequent actions necessary to send back a *response*.
 
 HTTP defines the following methods, each of which corresponds to one of the CRUD functionalities.
 

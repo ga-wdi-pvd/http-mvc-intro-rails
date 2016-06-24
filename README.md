@@ -6,7 +6,7 @@
 - Describe the components of an MVC application
 - Diagram & annotate the lifecycle of an HTTP request in Ruby on Rails
 - Explain how Ruby on Rails implements MVC
-- List the most common folders in a rails application and describe their purpose
+- List the most common folders in a Rails application and describe their purpose
 - Explain how Convention over Configuration relates to Ruby on Rails
 - Describe how to read understand and fix errors in a Rails application
 
@@ -15,18 +15,22 @@
 As our applications get more complicated, we need ways to help manage the
 *complexity* and *size*. We have lots of tools to help us do this.
 
-What are some some of these tools?
+<details>
+<summary>What are some some of these tools?</summary>
 
 * Breaking code into separate files
   * Each file has code related to one 'job'
 * OOP - model our program as objects with data and behavior (properties and methods)
 
-There are other tools we have as programmers. One tool is the idea of a *design
-pattern*. A design pattern is a higher-level pattern that shapes how we build
+</details>
+
+<br>
+There are other tools we have as programmers. One tool is the idea of a **design
+pattern**. A design pattern is a higher-level pattern that shapes how we build
 and structure our code.
 
-One such pattern for designing applications is MVC, which stands for *Model,
-View, Controller*.
+One such pattern for designing applications is MVC, which stands for **Model,
+View, Controller**.
 
 We're going to talk about MVC, because that's the pattern that Rails implements.
 
@@ -51,11 +55,11 @@ Rails.
 
 MVC is all about separating your code into separate sections:
 
-* *Models* - which represent the data in your application, and help you save, load,
+* **Models** - which represent the data in your application, and help you save, load,
 update, validate, etc.
-* *Views* - which describe how to present your data in a way that the user can
+* **Views** - which describe how to present your data in a way that the user can
 see and interact with.
-* *Controllers* - which are responsible for responding to user requests, and
+* **Controllers** - which are responsible for responding to user requests, and
 contain the code for implementing features, using models and views to help them
 get the job done.
 
@@ -112,7 +116,7 @@ conventions you'll need to follow for Rails throughout the week.
 
 Let's walk through a Rails App to get comfortable with it's file structures and
 identify where we will be configuring the all of the concepts we discussed
-above!  Enter [Tunr](https://github.com/ga-wdi-exercises/tunr_rails_views_controllers/tree/solution)!
+above!  Today, we'll be taking a look at [Tunr](https://github.com/ga-wdi-exercises/tunr_rails_views_controllers/tree/solution)!
 (yes, use the solution branch!)
 
 As we go through the app and code, you will notice how everything is abstracted
@@ -150,10 +154,12 @@ and files generated from just the one command.
 It can be quite daunting at first. It'll take some getting used to, but more
 importantly, you're already familiar with a lot of the stuff in rails we'll be
 using. Additionally, you can ignore a lot of the other stuff until you need to
-incorporate some weird gem/dependency. So we started learning about "convention
-over configuration" during the class for Active Record. As we scale to a rails
+incorporate some weird gem/dependency. So we started learning about *"convention
+over configuration"* during the class for Active Record.
+
+ As we scale to a Rails
 size application, We can quickly see the need for conventions in such a massive
-framework. Specifically for folder and file structure, rails can be quite
+framework. Specifically for folder and file structure, Rails can be quite
 particular about how we name things. Throughout this week we'll be going through
 a bunch of different conventions we need to follow.
 
@@ -225,7 +231,7 @@ We should see something like:
 
 ```
 => Booting WEBrick
-=> Rails 4.2.4 application starting in development on http://localhost:3000
+=> Rails 4.2.6 application starting in development on http://localhost:3000
 => Run `rails server -h` for more startup options
 => Ctrl-C to shutdown server
 [2016-03-09 09:02:00] INFO  WEBrick 1.3.1
@@ -234,7 +240,7 @@ We should see something like:
 ```
 
 Let's focus on this particular line:
-`=> Rails 4.2.4 application starting in development on http://localhost:3000`
+`=> Rails 4.2.6 application starting in development on http://localhost:3000`
 
 And enter `http://localhost:3000` in our browser.
 
@@ -248,10 +254,10 @@ And enter `http://localhost:3000` in our browser.
 Let's make a few requests in our browser, and trace the path of the code runs
 as a result of each request:
 
-- GET artist info
-- PUT changed info on the artist page
-- POST a new artist
-- DELETE an artist
+- `GET` artist info
+- `PUT` changed info on the artist page
+- `POST` a new artist
+- `DELETE` an artist
 
 ### Questions (10 min)
 
