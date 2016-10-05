@@ -311,9 +311,9 @@ To demonstrate, let's visit `http://localhost:3000/mispelledartists` in the brow
 
 ![no route error](images/no_route.png)
 
-## Closing (5 minutes / 0:05)
+## Closing (5 minutes / 1:45)
 
-* Review Learning Objectives
+* Review learning objectives
 * A real world example: [garnet](https://github.com/ga-dc/garnet)!
 
 ## Additional Resources
