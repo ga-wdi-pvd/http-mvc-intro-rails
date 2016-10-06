@@ -12,6 +12,8 @@
 
 ## Framing (10 minutes / 0:10)
 
+> NOTE: This lesson is our first foray into Rails. Its purpose is to give you a brief introduction into the back-end framework and give you a sense of what it's all about. By the end of this lesson, you are NOT expected to know the meaning behind each file and folder. All we want to focus on during this lesson is to get a feel for what Rails is all about and make comparisons between it and Sinatra. We'll get into the nitty-gritty of Rails in subsequent lessons.
+
 As our applications get more complicated, we need ways to help manage the
 *complexity* and *size*. We have lots of tools to help us do this.
 
@@ -45,6 +47,8 @@ frameworks like Django (Python) or CakePHP.
 MVC is *not* the only design pattern for applications, but it's a popular one. We'll also see somewhat
 related but different patterns in Javascript frameworks like Angular or Backbone.
 
+> Some others include [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) (Model-View-ViewModel) and [MVP](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter) (Model-View-Presenter).
+
 This lesson will not include writing much - if any - code at all. We are going to
 take a high-level theoretical approach. It's extremely important to understand
 the underlying concepts before jumping into such a heavy duty framework such as
@@ -54,12 +58,10 @@ Rails.
 
 MVC is all about separating your code into separate sections...
 
-* **Models**: they represent the data in our application and will be used to perform CRUD actions on our database
+* **Models**: they represent the data in our application and handle "business logic" using model methods
 * **Views**: they describe how to present your data in a way that the user can
 see in the browser
-* **Controllers**: they are responsible for responding to user requests, and
-contain the code for implementing features, using models and views to help them
-get the job done
+* **Controllers**: they are responsible for responding to user requests, interacting with models and loading views
 
 ## Rails and MVC (10 minutes / 0:20)
 
@@ -71,31 +73,42 @@ views and controllers.
 
 As a result, the request-response cycle looks like this for Rails...
 
-1. A user of our web application submits a request to our application's server.
-It can come in a myriad of ways. Maybe someone typing in a URL and hitting enter
-or maybe a user submitting a form on our application.
+  1. A user of our web application submits a request to our application's server.
+  It can come in a myriad of ways. Maybe someone typing in a URL and hitting enter
+  or maybe a user submitting a form on our application.
 
-2. The request hits the router of the application.
+  2. The request hits the router of the application.
 
-3. The application then either doesn't recognize the route (error) or it does
-recognize it (route) and sends it to a controller.
+  3. The application then either doesn't recognize the route (error) or it does
+  recognize it (route) and sends it to a controller.
 
-4. Once the controller gets the request, it performs any necessary actions. This
-might include fetching, updating, deleting, or creating information using one
-or more models.
+  4. Once the controller gets the request, it performs any necessary actions. This
+  might include fetching, updating, deleting, or creating information using one
+  or more models.
 
-5. Once the controller has performed any actions / retrieved any inforamation
-from the model(s), it uses a view to *render* an HTML page.
+  5. Once the controller has performed any actions / retrieved any inforamation
+  from the model(s), it uses a view to *render* an HTML page.
 
-6. The rendered view is then sent back to the client as a response.
+  6. The rendered view is then sent back to the client as a response.
 
-## We Do: In person MVC (20 minutes / 0:40)
+## We Do: In-Person MVC (20 minutes / 0:40)
 
 ## Rails Apps
 
 ### Convention Over Configuration in Rails
 
-So what is Rails? Rails is a powerful, full-featured web framework that follows
+We've used the phrase "convention over configuration" when describing how to write things in Sinatra?
+
+<details>
+  <summary><strong>What are some examples of "convention over configuration"?</strong></summary>
+
+  * Pluralized table names (e.g., `artists`)
+  * Singular, capitalized model names (e.g., `Artist`)
+  * Singular, lowercase model file names (e.g., `artist.rb`)
+
+</details>
+
+How does this apply to Rails? Well, Rails is a powerful, full-featured web framework that follows
 relatively strict conventions in order to streamline our web development
 process.
 
@@ -114,7 +127,12 @@ Let's walk through a Rails App to get comfortable with its file structure and
 identify where we will be configuring the all of the concepts we discussed
 above.
 
-Today, we'll be taking a look at [Tunr](https://github.com/ga-wdi-exercises/tunr_rails_views_controllers/tree/solution). **Make sure to check out the solution branch.**
+Today, we'll be taking a look at [Tunr](https://github.com/ga-wdi-exercises/tunr_rails_views_controllers/tree/solution)...
+
+```bash
+$ git clone git@github.com:ga-wdi-exercises/tunr_rails_views_controllers.git
+$ git checkout solution
+```
 
 As we go through the app and code, you will notice how everything is abstracted
 into individual files and directories. Why?
@@ -123,24 +141,42 @@ into individual files and directories. Why?
 - Readability
 - Rails Conventions
 
-## You Do: Explore the Folders (5 minutes / 0:50)
+## You Do: Scavenger Hunt (15 minutes / 0:50)
 
-Instructions
-* Clone down [Tunr](https://github.com/ga-wdi-exercises/tunr_rails_views_controllers/tree/solution)
-* Students should open up the `app` directory and explore the code on their own.
-* Note anything that reminds you of (1) our in-person exercises or (2) Sinatra.
+> 10 minute exercise. 5 minutes review.
 
-### What does a Rails App look like? (5 minutes / 0:55)
+We'll talk about what all these files and folders mean in just a moment, but first, we want to give you a chance to explore.
 
-When we first generated Tunr today, we ran the following command...
+Your job is to look through the application and find the Rails equivalents for the following, making sure to focus your search on the `app` and `db` directories...
 
-```bash
-$ rails new tunr -d postgresql
-```
+* Schema
+* Routes
+* An `Artist` model
+* Code that should be run when we visit the index page for artists
+* The view that should be displayed when we visit the index page for artists
+* `layout.erb`
+* Directories for CSS and Javascript files
+* `connection.rb`
 
-> **Do not run this command during this lesson!**
+> Make notes about anything else that reminds you of Sinatra.
 
-<!-- AM: Do we ever run this command in class? We're cloning it down... -->
+<details>
+  <summary><strong>Answers...</strong><summary>
+
+  | What? | Where? |
+  |---------|------------------|
+  | Schema | `db/schema.rb` |
+  | Routes | `config/routes.rb` |
+  | An `Artist` Model | `app/models/artist.rb` |
+  | Artist Index Code | `app/controllers/artists_controller.rb` |
+  | Artist Index View | `app/views/artists/index.html.erb` |
+  | `layout.erb` | `app/views/layouts/application.html.erb` |
+  | CSS/JS Directories | `app/assets` |
+  | `connection.rb` | `db/database.yml` |
+
+</details>
+
+### What Does a Rails App Look Like? (5 minutes / 0:55)
 
 As soon as we generate a Rails app, you can see there are already many folders
 and files generated from just the one command...
@@ -169,8 +205,8 @@ most of the programs functionality.
 - **`views`**: this folder contains all of the views in this application.
 
 The `bin` folder contains binstubs. Not going over this in the scope of this
-class, but basically they're used as wrappers around ruby gem executables(like
-pry) to be used in lieu of `bundle exec`
+class, but basically they're used as wrappers around ruby gem executables - like
+`pry` - to be used in lieu of `bundle exec`.
 
 The `config` is another folder that's pretty important. The file you'll most be
 visiting is `routes.rb` This is the router in rMVC.
@@ -181,33 +217,42 @@ which you'll be going over in the next class.
 
 In the root directory of the application you will also see a `Gemfile` and, if you've run `bundle install`, `Gemfile.lock`
 
-### Starting a Rails Server (5 minutes / 1:00)
+### You Do: Setup Commands (10 minutes / 1:00)
 
-Let's go ahead and look at the final application before we dive into the code.
+> 5 minutes exercise. 5 minutes review.
 
-In the console, let's run the following commands...
+The following are commands that we always run when creating and updating a Rails application. Your task is to run these in order and, based on the context clues (e.g., terminal output), figure out what they're doing. You answers don't need to be technical - keep it high level.
 
-```bash
-$ bundle install   # Loads and sets up the local dependencies
-```
+| Command | What does it do? |
+|---------|------------------|
+| `bundle install` | |
+| `rake db:create` | |
+| `rake db:migrate` | |
+| `rake db:seed` | |
+| `rails s` | |
 
-```bash
-$ rake db:create   # Creates the database, equivalent to `createdb db_name`
-```
+> If you need some help, try running `rake -T` in the terminal...
 
-```bash
-$ rake db:migrate   # Sets up schema, equivalent to psql -d db_name < schema_file.sql
-```
+#### Bonus
 
-```bash
-$ rake db:seed   # Runs seed file
-```
+Figure out what exactly "Rake" is. [Its GitHub repo is a good place to start](https://github.com/ruby/rake).
 
-```bash
-$ rails s   # Starts the server
-```
+<details>
+  <summary><strong>Answers...</strong></summary>
 
-We should then see something like this appear in the Terminal...
+  | Command | What does it do? |
+  |---------|------------------|
+  | `bundle install` | Loads and sets up the local dependencies |
+  | `rake db:create` | Creates the database, equivalent to `createdb db_name` |
+  | `rake db:migrate` | Sets up schema, equivalent to psql -d db_name < schema_file.sql |
+  | `rake db:seed` | Runs seed file |
+  | `rails s` | Starts the server |
+
+</details>
+
+------
+
+After we've done all that and run `rails s`, we should see something like this in the Terminal...
 
 ```bash
 => Booting WEBrick
@@ -229,22 +274,22 @@ Let's focus on this particular line...
 
 > `3000` is the default port number in a Rails Application, just like `4567` with Sinatra.
 
-## Break (10 minutes / 1:10)
+## Break (10 minutes / 1:15)
 
-### Walkthrough of Tunr (20 minutes / 1:30)
+### You Do: Follow A Request (20 minutes / 1:35)
 
-Let's make a few requests in our browser, and trace the path of the code runs
-as a result of each request:
+> 10 minutes exercise. 10 minutes review.
+
+Using your knowledge of the MVC request-response cycle and the files/folders you discovered during the scavenger hunt exercise, try following the path of an HTTP request through a Rails application. I'll demonstrate...
+
+Do that for each of the following.
 
 - `GET` artist info
 - `PUT` changed info on the artist page
 - `POST` a new artist
 - `DELETE` an artist
 
-<!-- AM: Am I supposed to write the code here, or walk through already-existing code? -->
-<!-- AM: Right now it seems to be the latter since we've cloned down the solution. -->
-
-### Questions (10 minutes / 1:40)
+### Questions (10 minutes / 1:45)
 
 #### Routes
 
@@ -288,6 +333,7 @@ as a result of each request:
 1. Where does the model get used?
 - Where have we seen models like this before?
 - What does `has_many` and `belongs_to` mean?
+- What conventions do we see here?
 
 <details>
   <summary><strong>Answers</strong></summary>
@@ -311,7 +357,7 @@ To demonstrate, let's visit `http://localhost:3000/mispelledartists` in the brow
 
 ![no route error](images/no_route.png)
 
-## Closing (5 minutes / 1:45)
+## Closing (5 minutes / 1:50)
 
 * Review learning objectives
 * A real world example: [garnet](https://github.com/ga-dc/garnet)!
@@ -319,6 +365,3 @@ To demonstrate, let's visit `http://localhost:3000/mispelledartists` in the brow
 ## Additional Resources
 - [Rails Documentation](http://api.rubyonrails.org/)
 - [Rails Github](https://github.com/rails/rails)
-
-# TO DOs
-* Add note about what `rake` means
