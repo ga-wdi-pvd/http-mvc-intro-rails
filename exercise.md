@@ -1,54 +1,60 @@
-# We Do – In person MVC role plays
+# We Do: Real Life MVC
 
 **Student Roles:**
 
-1.	request
-2.	controller
-3.	runner
-4.	model
-5.	index view
-6.	show view
+1. Request
+- Router
+-	Controller
+-	Model
+-	Index view
+-	Show view
+-	Runner
 
-**Requests**
+#### Requests
 
-get “/artists”
+`get “/artists”`
 
-post “/artists”
+`post “/artists”`
 
-put “/artists/:3”
+`put “/artists/3”`
 
-delete “/artists/:4”
+`delete “/artists/4”`
 
 
-**Controller Statement List**
+### Controller Statement List
 
-- If receive a GET request
-  - If no ID
-    - Then Ask Model for All Artists
-  - Render View
-  - Respond to Client
+#### GET (without an id)
 
-- Elsif  has ID
-  - Then Ask Model for Artist with given ID
-  - Render View
-  - Respond to Client
+- If no ID
+  - Then Ask Model for All Artists
+- Render View
+- Respond to Client
 
-- Elsif  receive a POST request
-  - Then Ask Model to Add New Artist Data
-  - Render View
-  - Respond to Client
+#### GET (with an id)
 
-- Elsif  receive a PUT request with an ID
-  - Then Ask Model to Edit Artist Data
-  - Render View
-  - Respond to Client
+- Then Ask Model for Artist with given ID
+- Render View
+- Respond to Client
 
-- Elsif receive a Delete request with an ID
-  - Then Ask Model to Delete Artist
-  - Render View
-  - Respond to Client
+#### POST
 
-**Views**
+- Then Ask Model to Add New Artist Data
+- Render View
+- Respond to Client
+
+#### PUT
+
+- Then Ask Model to Edit Artist Data
+- Render View
+- Respond to Client
+
+#### DELETE
+
+- Then Ask Model to Delete Artist
+- Render View
+- Respond to Client
+
+### View
 
 ```ruby
 
