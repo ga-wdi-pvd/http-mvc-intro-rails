@@ -161,7 +161,7 @@ Your job is to look through the application and find the Rails equivalents for t
 > Make notes about anything else that reminds you of Sinatra.
 
 <details>
-  <summary><strong>Answers...</strong><summary>
+  <summary><strong>Answers...</strong></summary>
 
   | What? | Where? |
   |---------|------------------|
