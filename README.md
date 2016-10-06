@@ -292,7 +292,7 @@ Do that for each of the following.
 1. Where do we configure our routes in a Rails Application?
 - What is the syntax for writing routes in a Rails App?
 - Why are we including a symbol again in `artists/:id` in our path?
-- What are `artists#index` and `shows#index` referring to?
+- What are `artists#index` and `artists#show` referring to?
 
 <details>
   <summary><strong>Answers</strong></summary>
