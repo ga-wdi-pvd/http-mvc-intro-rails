@@ -162,7 +162,7 @@ Your job is to look through the application and find the Rails equivalents for t
 
 <details>
   <summary><strong>Answers...</strong></summary>
-  
+
   * Schema - `db/schema.rb`
   * Routes - `config/routes.rb`
   * An `Artist` Model - `app/models/artist.rb`
@@ -198,8 +198,8 @@ This folder is the the most important folder in your entire application. It will
 most of the programs functionality.
 
 - **`assets`**: this will be where all of your CSS, JS, and image files belong.
-- **`controllers`**: this folder will contain all controllers.(ST - WG) What do controllers do for us?
-- **`models`**: this folder will contain our AR models.
+- **`controllers`**: this folder will contain all controllers.
+- **`models`**: this folder will contain our models.
 - **`views`**: this folder contains all of the views in this application.
 
 The `bin` folder contains binstubs. Not going over this in the scope of this
@@ -238,13 +238,11 @@ Figure out what exactly "Rake" is. [Its GitHub repo is a good place to start](ht
 <details>
   <summary><strong>Answers...</strong></summary>
 
-  | Command | What does it do? |
-  |---------|------------------|
-  | `bundle install` | Loads and sets up the local dependencies |
-  | `rake db:create` | Creates the database, equivalent to `createdb db_name` |
-  | `rake db:migrate` | Sets up schema, equivalent to psql -d db_name < schema_file.sql |
-  | `rake db:seed` | Runs seed file |
-  | `rails s` | Starts the server |
+  * `bundle install` - Loads and sets up the local dependencies
+  * `rake db:create` - Creates the database, equivalent to `createdb db_name`
+  * `rake db:migrate` - Sets up schema, equivalent to `psql -d db_name < schema_file.sql`
+  * `rake db:seed` - Runs seed file
+  * `rails s` - Starts the server
 
 </details>
 
