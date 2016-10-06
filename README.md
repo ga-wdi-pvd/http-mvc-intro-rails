@@ -162,17 +162,15 @@ Your job is to look through the application and find the Rails equivalents for t
 
 <details>
   <summary><strong>Answers...</strong></summary>
-
-  | What? | Where? |
-  |---------|------------------|
-  | Schema | `db/schema.rb` |
-  | Routes | `config/routes.rb` |
-  | An `Artist` Model | `app/models/artist.rb` |
-  | Artist Index Code | `app/controllers/artists_controller.rb` |
-  | Artist Index View | `app/views/artists/index.html.erb` |
-  | `layout.erb` | `app/views/layouts/application.html.erb` |
-  | CSS/JS Directories | `app/assets` |
-  | `connection.rb` | `db/database.yml` |
+  
+  * Schema - `db/schema.rb`
+  * Routes - `config/routes.rb`
+  * An `Artist` Model - `app/models/artist.rb`
+  * Artist Index Code - `app/controllers/artists_controller.rb`
+  * Artist Index View - `app/views/artists/index.html.erb`
+  * `layout.erb` - `app/views/layouts/application.html.erb`
+  * CSS/JS Directories - `app/assets`
+  * `connection.rb` - `db/database.yml`
 
 </details>
 
