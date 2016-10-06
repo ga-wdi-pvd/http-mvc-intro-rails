@@ -224,10 +224,10 @@ The following are commands that we always run when creating and updating a Rails
 | Command | What does it do? |
 |---------|------------------|
 | `bundle install` | |
-| `rake db:create` | |
-| `rake db:migrate` | |
-| `rake db:seed` | |
-| `rails s` | |
+| `bundle exec rake db:create` | |
+| `bundle exec rake db:migrate` | |
+| `bundle exec rake db:seed` | |
+| `bundle exec rails s` | |
 
 > If you need some help, try running `rake -T` in the terminal...
 
