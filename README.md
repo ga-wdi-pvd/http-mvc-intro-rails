@@ -57,7 +57,7 @@ Rails.
 
 MVC is all about separating your code into separate sections...
 
-* **Models**: they represent the data in our application and handle "business logic" using model methods
+* **Models**: they represent the data in our application 
 * **Views**: they describe how to present your data in a way that the user can
 see in the browser
 * **Controllers**: they are responsible for responding to user requests, interacting with models and loading views
