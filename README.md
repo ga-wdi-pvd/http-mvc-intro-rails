@@ -35,9 +35,8 @@ View, Controller**.
 
 We're going to talk about MVC, because that's the pattern that Rails implements.
 
-If you've seen Sinatra, you've already seen a pattern that is very close to MVC,
-but not quite. If you've seen ActiveRecord, then you've already seen a library
-that helps you build *models*.
+You've seen Sinatra so you've already seen a pattern that is very close to MVC,
+but not quite. ActiveRecord has already shown you a library that helps you build *models*.
 
 MVC can be used in lots of types of applications. There are MVC-style
 frameworks for building native desktop apps (e.g., Microsoft's ASP.net, Cocoa
@@ -66,7 +65,7 @@ see in the browser
 ## Rails and MVC (10 minutes / 0:20)
 
 Because Rails is for web apps, there's one additional component it adds to MVC:
-a router. Thus we sometimes say that Rails is built around **rMVC** - a router, models,
+a router. A router connects incoming requests on the server to the application's controller. Thus we sometimes say that Rails is built around **rMVC** - a router, models,
 views and controllers.
 
 ![rMVC](http://i.stack.imgur.com/Sf2OQ.png)
@@ -86,7 +85,7 @@ As a result, the request-response cycle looks like this for Rails...
   might include fetching, updating, deleting, or creating information using one
   or more models.
 
-  5. Once the controller has performed any actions / retrieved any inforamation
+  5. Once the controller has performed any actions / retrieved any information
   from the model(s), it uses a view to *render* an HTML page.
 
   6. The rendered view is then sent back to the client as a response.
@@ -97,7 +96,7 @@ As a result, the request-response cycle looks like this for Rails...
 
 ### Convention Over Configuration in Rails
 
-We've used the phrase "convention over configuration" when describing how to write things in Sinatra?
+We've used the phrase "convention over configuration" when describing how to write things in Sinatra.
 
 <details>
   <summary><strong>What are some examples of "convention over configuration"?</strong></summary>
@@ -124,13 +123,13 @@ conventions you'll need to follow for Rails throughout the week.
 ### Rails Walkthrough (5 minutes / 0:45)
 
 Let's walk through a Rails App to get comfortable with its file structure and
-identify where we will be configuring the all of the concepts we discussed
+identify where we will be configuring all of the concepts we discussed
 above.
 
 Today, we'll be taking a look at [Tunr](https://github.com/ga-wdi-exercises/tunr_rails_views_controllers/tree/solution)...
 
 ```bash
-$ git clone git@github.com:ga-wdi-exercises/tunr_rails_views_controllers.git
+$ git clone https://github.com/ga-wdi-exercises/tunr_rails_views_controllers.git
 $ git checkout solution
 ```
 
@@ -147,7 +146,7 @@ into individual files and directories. Why?
 
 We'll talk about what all these files and folders mean in just a moment, but first, we want to give you a chance to explore.
 
-Your job is to look through the application and find the Rails equivalents for the following, making sure to focus your search on the `app` and `db` directories...
+Your job is to look through the application and find the Rails equivalents for the following, making sure to focus your search on the `app`, `db` and `config` directories...
 
 * Schema
 * Routes
@@ -170,14 +169,14 @@ Your job is to look through the application and find the Rails equivalents for t
   * Artist Index View - `app/views/artists/index.html.erb`
   * `layout.erb` - `app/views/layouts/application.html.erb`
   * CSS/JS Directories - `app/assets`
-  * `connection.rb` - `db/database.yml`
+  * `connection.rb` - `config/database.yml`
 
 </details>
 
 ### What Does a Rails App Look Like? (5 minutes / 0:55)
 
 As soon as we generate a Rails app, you can see there are already many folders
-and files generated from just the one command...
+and files generated from just the one command (`rails new`)
 
 ![Rails folder structure](images/rails_folders.png)
 
@@ -203,8 +202,8 @@ most of the programs functionality.
 - **`views`**: this folder contains all of the views in this application.
 
 The `bin` folder contains binstubs. Not going over this in the scope of this
-class, but basically they're used as wrappers around ruby gem executables - like
-`pry` - to be used in lieu of `bundle exec`.
+class, but basically they're used as wrappers to around ruby gem executables - like
+`pry` - to be used in lieu of `bundle exec`. Their purpose is to prepare the environment for the executable.
 
 The `config` is another folder that's pretty important. The file you'll most be
 visiting is `routes.rb` This is the router in rMVC.
@@ -224,6 +223,7 @@ The following are commands that we always run when creating and updating a Rails
 | Command | What does it do? |
 |---------|------------------|
 | `bundle install` | |
+| `bundle exec rake db:drop` | |
 | `bundle exec rake db:create` | |
 | `bundle exec rake db:migrate` | |
 | `bundle exec rake db:seed` | |
@@ -240,8 +240,8 @@ Figure out what exactly "Rake" is. [Its GitHub repo is a good place to start](ht
 
   * `bundle install` - Loads and sets up the local dependencies
   * `rake db:create` - Creates the database, equivalent to `createdb db_name`
-  * `rake db:migrate` - Sets up schema, equivalent to `psql -d db_name < schema_file.sql`
-  * `rake db:seed` - Runs seed file
+  * `rake db:migrate` - Sets up schema, equivalent to `psql -d db_name < schema_file.sql`. Creates the tables in the database
+  * `rake db:seed` - Runs seed file. Populates the tables.
   * `rails s` - Starts the server
 
 </details>
@@ -310,7 +310,7 @@ Do that for each of the following.
 #### Views
 
 1. What is this `index.html.erb` file type?
-- Does it matter what we name our views. Does it matter if it's plural or singular?
+- Does it matter what we name our views folders. Does it matter if it's plural or singular?
 - What is the layouts directory used for?
 
 <details>
@@ -339,6 +339,8 @@ Do that for each of the following.
   > 2. These are ActiveRecord models!
   >
   > 3. These define the relationships between models. In the case of Tunr, we have a simple one-many relationship: one artist has many songs
+  >
+  > 4. These model name must be capitalized.
 
 </details>
 
