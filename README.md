@@ -8,11 +8,44 @@
 - Explain how Ruby on Rails implements MVC
 - List the most common folders in a Rails application and describe their purpose
 - Explain how Convention over Configuration relates to Ruby on Rails
-- Describe how to read understand and fix errors in a Rails application
+- Describe how to read, understand and fix errors in a Rails application
 
 ## Framing (10 minutes / 0:10)
 
-> NOTE: This lesson is our first foray into Rails. Its purpose is to give you a brief introduction into the back-end framework and give you a sense of what it's all about. By the end of this lesson, you are NOT expected to know the meaning behind each file and folder. All we want to focus on during this lesson is to get a feel for what Rails is all about and make comparisons between it and Sinatra. We'll get into the nitty-gritty of Rails in subsequent lessons.
+What do  Airbnb, Basecamp, Disney, GitHub, Hulu, Kickstarter, Shopify, Twitter, and the Yellow Pages all have in common? They were built on the Ruby on Rails framework.
+
+RoR is a rapid web application development framework, designed to get you up and running quickly. It was made famous by the 15 minute blog video from creator David Heinnemair Hanson.
+
+Today we are not going to get into the nuances and gritty details of Rails. Insead, we will give you a brief introduction into the back-end framework. In future lessons, we are going to get into the full power of Rails, including the ability to quickly get a web application up and running, complete with CRUD capability. By getting familiar with the Rails framework nd design choices, you are learning the same system that powers some of the largest sites on the web.
+
+## Why Rails?
+What makes Rails so special? Why has it become so popular as a web development framework? One of the reasons is that it is completely open source
+
+Check out the [source code](https://github.com/rails/rails) on Github.
+  - what can you tell me about the Rails project, by looking at its github page? 
+    - open source stats…
+      - 60,000 + commits
+      - 3000 + contributors 
+      - 13,000 + forks (!)
+    - current version…
+      - current version: Rails 5
+      - Do you think you are going to work with multiple versions of Rails? In the real world it takes years for companies to go from rails 3 to 4, and 4 to 5. You should be familiar with how to use different versions. Tools like [Ruby Version Manager (or RVM)](https://rvm.io/) can help with that
+
+    - Are there outstanding issues yet to be merged in Pull Requests? What do these pull requests represent?
+  - created by DHH and 37 Signals
+
+Rails is a BIG project. It will take you YEARS to get to know all of it, BUT you only need to know a handful of commands to get started. Rails is famous for its [15 minute blog video](https://www.youtube.com/watch?v=Gzj723LkRJY) by DHH
+
+> NOTE: Do not get discouraged by the amount of brand new stuff in a Rails project and in the Rails ecosystem on the web. By the end of this lesson, you are NOT expected to know the meaning behind each file and folder. All we want to focus on during this lesson is to get a feel for what Rails is all about and make comparisons between it and Sinatra. We'll get into the nitty-gritty of Rails in subsequent lessons.
+
+This lesson will not include writing much - if any - code at all. We are going to
+take a high-level theoretical approach. It's extremely important to understand
+the underlying concepts before jumping into such a heavy duty framework such as
+Rails.
+
+First, we are going to talk more about the design and architecture of a Rails application, and the pattern that it uses, the MVC pattern.
+
+## What Is MVC?
 
 As our applications get more complicated, we need ways to help manage the
 *complexity* and *size*. We have lots of tools to help us do this.
@@ -48,12 +81,6 @@ related but different patterns in Javascript frameworks like Angular or Backbone
 
 > Some others include [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) (Model-View-ViewModel) and [MVP](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter) (Model-View-Presenter).
 
-This lesson will not include writing much - if any - code at all. We are going to
-take a high-level theoretical approach. It's extremely important to understand
-the underlying concepts before jumping into such a heavy duty framework such as
-Rails.
-
-## What Is MVC?
 
 MVC is all about separating your code into separate sections...
 
@@ -126,11 +153,14 @@ Let's walk through a Rails App to get comfortable with its file structure and
 identify where we will be configuring all of the concepts we discussed
 above.
 
-Today, we'll be taking a look at [Tunr](https://github.com/ga-wdi-exercises/tunr_rails_views_controllers/tree/solution)...
+Go ahead and checkout a copy of the [Tunr](https://github.com/ga-wdi-exercises/tunr_rails_views_controllers/tree/solution) application, rewritten in the Rails framework:
 
 ```bash
 $ git clone https://github.com/ga-wdi-exercises/tunr_rails_views_controllers.git
+$ cd tunr_rails_views_controllers
 $ git checkout solution
+(optional)
+$ bundle install
 ```
 
 As we go through the app and code, you will notice how everything is abstracted
@@ -174,6 +204,19 @@ Your job is to look through the application and find the Rails equivalents for t
 </details>
 
 ### What Does a Rails App Look Like? (5 minutes / 0:55)
+
+Let's create our own Rails app:
+
+```bash
+$ cd my_ga_projects_directory
+$ rails new hello_rails
+$ cd hello_rails
+```
+
+What happened during this generate command?
+- made a bunch of files
+- `bundle install`
+- was a database created?
 
 As soon as we generate a Rails app, you can see there are already many folders
 and files generated from just the one command (`rails new`)
@@ -222,14 +265,19 @@ The following are commands that we always run when creating and updating a Rails
 
 | Command | What does it do? |
 |---------|------------------|
+| `ruby -v`  | |
+| `sqlite3 --version` | |
+| `rails -v` | |
 | `bundle install` | |
 | `bundle exec rake db:drop` | |
 | `bundle exec rake db:create` | |
 | `bundle exec rake db:migrate` | |
 | `bundle exec rake db:seed` | |
+| `bundle exec rake stats`  | |  
 | `bundle exec rails s` | |
 
 > If you need some help, try running `rake -T` in the terminal...
+> Why `bundle exec` before the rest of the command? Do you always need it?
 
 #### Bonus
 
@@ -238,10 +286,14 @@ Figure out what exactly "Rake" is. [Its GitHub repo is a good place to start](ht
 <details>
   <summary><strong>Answers...</strong></summary>
 
+  * `ruby -v` - checks your ruby version
+  * `sqlite3 --version` - checks your sqlite3 version
+  * -`rails -v` checks your rails version
   * `bundle install` - Loads and sets up the local dependencies
   * `rake db:create` - Creates the database, equivalent to `createdb db_name`
   * `rake db:migrate` - Sets up schema, equivalent to `psql -d db_name < schema_file.sql`. Creates the tables in the database
   * `rake db:seed` - Runs seed file. Populates the tables.
+  * `rake stats` - Your project stats, including LoC
   * `rails s` - Starts the server
 
 </details>
@@ -278,14 +330,7 @@ Let's focus on this particular line...
 
 Using your knowledge of the MVC request-response cycle and the files/folders you discovered during the scavenger hunt exercise, try following the path of an HTTP request through a Rails application. HTTP is a protocol - a system of rules - that determines how web pages (see:'hypertext') get sent (see:'transferred') from one place to another. Among other things, it defines the format of the messages passed between HTTP clients and HTTP server.Since the web is a service, it works through a combination of clients which make requests and servers (which receive requests).
 
-I'll demonstrate...
-
-Do that for each of the following.
-
-- `GET` artist info
-- `PUT` changed info on the artist page
-- `POST` a new artist
-- `DELETE` an artist
+- `GET` the homepage of your app
 
 ### Questions (10 minutes / 1:45)
 
@@ -293,17 +338,21 @@ Do that for each of the following.
 
 1. Where do we configure our routes in a Rails Application?
 - What is the syntax for writing routes in a Rails App?
-- Why are we including a symbol again in `artists/:id` in our path?
-- What are `artists#index` and `artists#show` referring to?
+2. How do we change the route to our homepage?
+3. What does this route mean?
+  - `get "artists" => "artists#index"`
+4. How can we route to a dynamic page, such as `artists/4`?
 
 <details>
   <summary><strong>Answers</strong></summary>
 
   > 1. config/routes.rb
   >
-  > 2. `GET` request example: `get "artists" => "artists#index"``
+  > 2. change `root welcome#index` to point to our homepage
   >
-  > 3. Can dynamically change the id of artist and grab those params as needed in our application
+  > 3. `GET` request example: `get "artists" => "artists#index"``
+  > 
+  > 4. Can dynamically change the id of artist and grab those params as needed in our application
   >
   > 4. On the right side of the hash rocket `"artists#index"` its specifying the ***controller*** and an ***action*** within that controller. In this case, when a user of our site accesses the `artists` path(`http://localhost:3000/artists`), that request will be sent to the artists controller and execute the index action inside that controller.
 
