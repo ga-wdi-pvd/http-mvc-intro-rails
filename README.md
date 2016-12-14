@@ -1,4 +1,4 @@
-# Intro to Ruby on Rails
+# Hello Rails
 
 ## Learning Objectives
 
@@ -6,37 +6,53 @@
 - Describe the components of an MVC application
 - Diagram & annotate the lifecycle of an HTTP request in Ruby on Rails
 - Explain how Ruby on Rails implements MVC
+- Create a Rails application that displays "Hello Rails!"
 - List the most common folders in a Rails application and describe their purpose
 - Explain how Convention over Configuration relates to Ruby on Rails
 - Describe how to read, understand and fix errors in a Rails application
 
 ## Framing (10 minutes / 0:10)
 
-What do  Airbnb, Basecamp, Disney, GitHub, Hulu, Kickstarter, Shopify, Twitter, and the Yellow Pages all have in common? They were built on the Ruby on Rails framework.
+What do  Airbnb, Basecamp, Disney, GitHub, Hulu, Kickstarter, Shopify, Twitter, and the Yellow Pages all have in common? They were built on the Ruby on Rails framework. Sure, there are many other systems in play with massive sites such as these, but they all, at one time or another, were based on the Ruby on Rails framework.
 
-RoR is a rapid web application development framework, designed to get you up and running quickly. It was made famous by the 15 minute blog video from creator David Heinnemair Hanson.
+"Rails is a web-application framework that includes everything needed to create database-backed web applications according to the Model-View-Controller (MVC) pattern." -[Rails Docs](http://api.rubyonrails.org/)
 
-Today we are not going to get into the nuances and gritty details of Rails. Insead, we will give you a brief introduction into the back-end framework. In future lessons, we are going to get into the full power of Rails, including the ability to quickly get a web application up and running, complete with CRUD capability. By getting familiar with the Rails framework nd design choices, you are learning the same system that powers some of the largest sites on the web.
+Today we are not going to get into the nuances and gritty details of Rails. Instead, we will give you a brief introduction into the back-end framework. In [future lessons](https://github.com/ga-wdi-pvd/rails_features_CRD), we are going to get into the full power of Rails, including the ability to CRUD with the best of 'em. By learning the "what" and "why" of Rails first, we are laying the foundation for deeper understanding when you dive into full-fledged Rails apps later. Remember, you are learning the same system that powers some of the largest sites on the web.
 
 ## Why Rails?
-What makes Rails so special? Why has it become so popular as a web development framework? One of the reasons is that it is completely open source
+What makes Rails so special? Why has it become so popular as a web development framework? 
 
-Check out the [source code](https://github.com/rails/rails) on Github.
-  - what can you tell me about the Rails project, by looking at its github page? 
-    - open source stats…
-      - 60,000 + commits
-      - 3000 + contributors 
-      - 13,000 + forks (!)
+- One of the reasons is that it is completely open source. 
+
+  -Check out the [source code](https://github.com/rails/rails) on Github.
+    - what can you tell me about the Rails project, by looking at its github page? 
+      - open source stats:
+       - 60,000 + commits
+       - 3000 + contributors 
+       - 13,000 + forks (!)
     - current version…
       - current version: Rails 5
       - Do you think you are going to work with multiple versions of Rails? In the real world it takes years for companies to go from rails 3 to 4, and 4 to 5. You should be familiar with how to use different versions. Tools like [Ruby Version Manager (or RVM)](https://rvm.io/) can help with that
 
     - Are there outstanding issues yet to be merged in Pull Requests? What do these pull requests represent?
-  - created by DHH and 37 Signals
 
-Rails is a BIG project. It will take you YEARS to get to know all of it, BUT you only need to know a handful of commands to get started. Rails is famous for its [15 minute blog video](https://www.youtube.com/watch?v=Gzj723LkRJY) by DHH
+A few more reasons that people use Rails:
 
-> NOTE: Do not get discouraged by the amount of brand new stuff in a Rails project and in the Rails ecosystem on the web. By the end of this lesson, you are NOT expected to know the meaning behind each file and folder. All we want to focus on during this lesson is to get a feel for what Rails is all about and make comparisons between it and Sinatra. We'll get into the nitty-gritty of Rails in subsequent lessons.
+- It is written with Ruby, which is more fun to work with than Java, ASP.net, and PHP. Writing in Ruby makes developers happy. Happy developers write good code.  Check out this [history of web frameworks timeline](https://github.com/mraible/history-of-web-frameworks-timeline) to see what Rails was competing with back in 2004 - 2005. 
+
+- Rails is expressive. It uses something called a DSL (Domain Specific Language) built on top of Ruby that allows very readable code, such as associations which we've seen: `has_many` and `belongs_to`. And validations are a snap: What do you think `validates_presence_of :title` does when placed in the `song.rb` class of `Tunr`?
+
+- Rails is opinionated. It's configured out of the box for web apps to "just work". This is great for many developers, and if you want to customize it, you can do that too, because it's all open source. And free.
+
+- Maturity - it's been around long enough to have the major kinks and security issues worked out.
+
+- Community - there is a large, dedicated community that is ready to help developers when we get in a bind.
+
+- Ruby Gems - there is a large colleciton of mature Ruby libraries we can plug into our Rails apps, which allows us to do more and write less. Need some functionality? There's likely a ruby gem for that. If not, write your own!
+
+But of course, Rails is not right for every project by any means. It is not a silver bullet to solve all problems and make millions in Silicon Valley. Smaller projects may just need something like Sinatra, or you could write plain ruby and include a few specific ruby gems to round out your web app. Just remember not to reinvent the wheel.
+
+> NOTE: Rails has been around since 2004, and it is a BIG project. It will take you YEARS to get to know all of it, BUT you only need to know a handful of commands to get started. Do not get discouraged by the amount of brand new stuff in a Rails project and in the Rails ecosystem on the web. By the end of this lesson, you are NOT expected to know the meaning behind each file and folder. All we want to focus on during this lesson is to get a feel for what Rails is all about and make comparisons between it and Sinatra. We'll get plenty of practice with more Rails features and capabilities in future lessons.
 
 This lesson will not include writing much - if any - code at all. We are going to
 take a high-level theoretical approach. It's extremely important to understand
@@ -414,3 +430,6 @@ To demonstrate, let's visit `http://localhost:3000/mispelledartists` in the brow
 ## Additional Resources
 - [Rails Documentation](http://api.rubyonrails.org/)
 - [Rails Github](https://github.com/rails/rails)
+
+## Prework
+ - Rails is famous for its [15 minute blog video](https://www.youtube.com/watch?v=Gzj723LkRJY) by DHH. Give the video a watch and get excited! But remember, this is from 2005 and some things have changed since then.
