@@ -1,4 +1,4 @@
-# Intro to MVC and Rails
+# Intro to Ruby on Rails
 
 ## Learning Objectives
 
