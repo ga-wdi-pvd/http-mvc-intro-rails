@@ -134,6 +134,9 @@ As a result, the request-response cycle looks like this for Rails...
   6. The rendered view is then sent back to the client as a response.
 
 ## We Do: In-Person MVC (20 minutes / 0:40)
+- As a class, everyone will count off, 1-7.
+- Divide students into roles as specified here:
+https://github.com/ga-wdi-pvd/http-mvc-intro-rails/blob/master/exercise.md
 
 ## Rails Apps
 
@@ -160,8 +163,7 @@ assumption that there is a "best" way to do things, and it's designed to
 encourage that way - and in some cases to discourage alternatives. -- Ruby on
 Rails guide
 
-Rails is a framework with lots of rules/conventions. Pay attention to the
-conventions you'll need to follow for Rails throughout the week.
+Rails is a framework with lots of rules/conventions. Pay attention to the conventions, and don't swim upstream! Learn the rules so that you will know how to effectively break them when the time comes :)
 
 ### Rails Walkthrough (5 minutes / 0:45)
 
@@ -175,8 +177,6 @@ Go ahead and checkout a copy of the [Tunr](https://github.com/ga-wdi-exercises/t
 $ git clone https://github.com/ga-wdi-exercises/tunr_rails_views_controllers.git
 $ cd tunr_rails_views_controllers
 $ git checkout solution
-(optional)
-$ bundle install
 ```
 
 As we go through the app and code, you will notice how everything is abstracted
@@ -203,7 +203,7 @@ Your job is to look through the application and find the Rails equivalents for t
 * Directories for CSS and Javascript files
 * `connection.rb`
 
-> Make notes about anything else that reminds you of Sinatra.
+> Make notes about anything else that reminds you of Sinatra, and anything that you are curious about.
 
 <details>
   <summary><strong>Answers...</strong></summary>
@@ -311,6 +311,7 @@ Figure out what exactly "Rake" is. [Its GitHub repo is a good place to start](ht
   * `rake db:seed` - Runs seed file. Populates the tables.
   * `rake stats` - Your project stats, including LoC
   * `rails s` - Starts the server
+  * `bundle exec` makes sure you are executing the correct command in the context of your rails app. The presence of "binstubs" in the `yourRailsApp/bin` directory are wrappers for these commands and allow you to safely just run commands like `rails s` without prefixing `bundle exec`
 
 </details>
 
@@ -344,11 +345,12 @@ Let's focus on this particular line...
 
 > 10 minutes exercise. 10 minutes review.
 
-Using your knowledge of the MVC request-response cycle and the files/folders you discovered during the scavenger hunt exercise, try following the path of an HTTP request through a Rails application. HTTP is a protocol - a system of rules - that determines how web pages (see:'hypertext') get sent (see:'transferred') from one place to another. Among other things, it defines the format of the messages passed between HTTP clients and HTTP server.Since the web is a service, it works through a combination of clients which make requests and servers (which receive requests).
+Using your knowledge of the MVC request-response cycle and the files/folders you discovered during the scavenger hunt exercise, try following the path of an HTTP request through a Rails application. HTTP is a protocol - a system of rules - that determines how web pages (see:'hypertext') get sent (see:'transferred') from one place to another. Among other things, it defines the format of the messages passed between HTTP clients and an HTTP server.  Since the web is a *service*, it works through a combination of *clients* (which make requests) and *servers* (which receive requests).
 
-- `GET` the homepage of your app
+- `GET` the homepage of your app. What does the request-repsonse cycle look like for this request?
 
 ### Questions (10 minutes / 1:45)
+- Q & A about Rails so far
 
 #### Routes
 
@@ -357,22 +359,31 @@ Using your knowledge of the MVC request-response cycle and the files/folders you
 2. How do we change the route to our homepage?
 3. What does this route mean?
   - `get "artists" => "artists#index"`
-4. How can we route to a dynamic page, such as `artists/4`?
+  - `post "artists/update" => "artists#update"`
+4. How can we route to a dynamic page, such as `artists/4` (or `artists/10020`)?
 
 <details>
   <summary><strong>Answers</strong></summary>
 
   > 1. config/routes.rb
   >
-  > 2. change `root welcome#index` to point to our homepage
+  > 2. Uncomment `root welcome#index` to point to our homepage. Note that you need to create this `welcome` controller with an action, `index`, for this to work correctly.
   >
-  > 3. `GET` request example: `get "artists" => "artists#index"``
+  > 3. Routing examples
+     - The first route: `GET` request example: `get "artists" => "artists#index"`` says that when a request comes into the "artists" path that is a GET request, go to the "`artists` controller `index` action"
+     - The 2nd route: `POST` request example: `post "artists/update" => "artists#update"` says that when a request comes into the "artists/update" path and is a POST request, go to the "`artists` controller `update` action"
   > 
-  > 4. Can dynamically change the id of artist and grab those params as needed in our application
-  >
-  > 4. On the right side of the hash rocket `"artists#index"` its specifying the ***controller*** and an ***action*** within that controller. In this case, when a user of our site accesses the `artists` path(`http://localhost:3000/artists`), that request will be sent to the artists controller and execute the index action inside that controller.
+  > 4. Can dynamically change the id of artist and grab those params as needed in our application by using a symbol in the route: `get "artists/:id" => "artists#show"`, which says when a GET request comes into the path "artists" with anything after it (artists/4 or artists/10020), it routes to the controller `artists` with action `show`, and a param of `id` is available to our controller in the `params` hash (`params[:id]`)
 
 </details>
+
+In summary, the route is comprised of two parts: a path that the request is sent to, and a controller action that we route that request to. 
+
+Take a look at `get 'dog/bark' => 'dogs#make_dog_bark'`. 
+
+On the left side of the route declaration, we specify the HTTP verb and the path, , and on the right side of the hash rocket, we are specifying the ***controller*** and an ***action*** within that controller. In this case, when a user of our site accesses the `dog/bark` path(`http://localhost:3000/dog/bark`), that request will be sent to the `dogs.rb` controller and execute the `make_dog_bark` action inside that controller.
+
+The routes file can be pretty complex, as it allows you to customize every part of incoming requests and outgoing responses. You will definetly want to have the [Rails Guide for Routing](http://guides.rubyonrails.org/routing.html) open for your first few attempts at writing routes.
 
 #### Views
 
@@ -391,7 +402,19 @@ Using your knowledge of the MVC request-response cycle and the files/folders you
 
 </details>
 
+#### Hello Rails!
+Now we know how to change our homepage route, let's point our homepage to a custom controller and action:
+Steps:
+- create the `welcome` controller with the `index` action
+- add text `<h1>Hello Rails!</h1>` to the `welcome/index.html.erb` view
+- point your `/` route to your new page
+- fire up your web server with `rails s`
+- visit your page
+- pat yourself on the back.
+
 #### Models
+
+Let's go back to our Tunr application and look at the models already set up for us
 
 1. Where does the model get used?
 - Where have we seen models like this before?
@@ -422,10 +445,13 @@ To demonstrate, let's visit `http://localhost:3000/mispelledartists` in the brow
 
 ![no route error](images/no_route.png)
 
+## Bonus Material if we have time!
+- Fork, clone and install Garnet so it runs on your local machine: [garnet](https://github.com/ga-dc/garnet)!
+
 ## Closing (5 minutes / 1:50)
 
 * Review learning objectives
-* A real world example: [garnet](https://github.com/ga-dc/garnet)!
+* Prepare for future lessons
 
 ## Additional Resources
 - [Rails Documentation](http://api.rubyonrails.org/)
