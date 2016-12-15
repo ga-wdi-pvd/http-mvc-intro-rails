@@ -11,7 +11,7 @@
 - Explain how Convention over Configuration relates to Ruby on Rails
 - Describe how to read, understand and fix errors in a Rails application
 
-## Framing (10 minutes / 0:10)
+## Framing (5 minutes / 0:05)
 
 What do  Airbnb, Basecamp, Disney, GitHub, Hulu, Kickstarter, Shopify, Twitter, and the Yellow Pages all have in common? They were built on the Ruby on Rails framework. Sure, there are many other systems in play with massive sites such as these, but they all, at one time or another, were based on the Ruby on Rails framework.
 
@@ -19,7 +19,7 @@ What do  Airbnb, Basecamp, Disney, GitHub, Hulu, Kickstarter, Shopify, Twitter, 
 
 Today we are not going to get into the nuances and gritty details of Rails. Instead, we will give you a brief introduction into the back-end framework. In [future lessons](https://github.com/ga-wdi-pvd/rails_features_CRD), we are going to get into the full power of Rails, including the ability to CRUD with the best of 'em. By learning the "what" and "why" of Rails first, we are laying the foundation for deeper understanding when you dive into full-fledged Rails apps later. Remember, you are learning the same system that powers some of the largest sites on the web.
 
-## Why Rails?
+## Why Rails? (10 minutes / 0:15)
 What makes Rails so special? Why has it become so popular as a web development framework? 
 
 - One of the reasons is that it is completely open source. 
@@ -61,7 +61,7 @@ Rails.
 
 First, we are going to talk more about the design and architecture of a Rails application, and the pattern that it uses, the MVC pattern.
 
-## What Is MVC?
+## What Is MVC? (10 minutes - 0:25)
 
 As our applications get more complicated, we need ways to help manage the
 *complexity* and *size*. We have lots of tools to help us do this.
@@ -105,7 +105,7 @@ MVC is all about separating your code into separate sections...
 see in the browser
 * **Controllers**: they are responsible for responding to user requests, interacting with models and loading views
 
-## Rails and MVC (10 minutes / 0:20)
+## Rails and MVC (5 minutes / 0:30)
 
 Because Rails is for web apps, there's one additional component it adds to MVC:
 a router. A router connects incoming requests on the server to the application's controller. Thus we sometimes say that Rails is built around **rMVC** - a router, models,
@@ -133,14 +133,14 @@ As a result, the request-response cycle looks like this for Rails...
 
   6. The rendered view is then sent back to the client as a response.
 
-## We Do: In-Person MVC (20 minutes / 0:40)
+## We Do: In-Person MVC (20 minutes / 0:50)
 - As a class, everyone will count off, 1-7.
 - Divide students into roles as specified here:
 https://github.com/ga-wdi-pvd/http-mvc-intro-rails/blob/master/exercise.md
 
-## Rails Apps
+## Hello Rails
 
-### Convention Over Configuration in Rails
+### Convention Over Configuration in Rails (5 minutes / 0:55)
 
 We've used the phrase "convention over configuration" when describing how to write things in Sinatra.
 
@@ -165,7 +165,7 @@ Rails guide
 
 Rails is a framework with lots of rules/conventions. Pay attention to the conventions, and don't swim upstream! Learn the rules so that you will know how to effectively break them when the time comes :)
 
-### Rails Walkthrough (5 minutes / 0:45)
+### Rails Walkthrough (5 minutes / 1:00)
 
 Let's walk through a Rails App to get comfortable with its file structure and
 identify where we will be configuring all of the concepts we discussed
@@ -186,7 +186,7 @@ into individual files and directories. Why?
 - Readability
 - Rails Conventions
 
-## You Do: Scavenger Hunt (15 minutes / 0:50)
+## You Do: Scavenger Hunt (15 minutes / 1:15)
 
 > 10 minute exercise. 5 minutes review.
 
@@ -219,7 +219,11 @@ Your job is to look through the application and find the Rails equivalents for t
 
 </details>
 
-### What Does a Rails App Look Like? (5 minutes / 0:55)
+## Break! (10 minutes / 1:25)
+
+### What Does a Rails App Look Like? (15 minutes / 1:40)
+
+#### You Do: Create your app
 
 Let's create our own Rails app:
 
@@ -228,6 +232,7 @@ $ cd my_ga_projects_directory
 $ rails new hello_rails
 $ cd hello_rails
 ```
+#### Questions and a Look into Common Folders
 
 What happened during this generate command?
 - made a bunch of files
@@ -239,11 +244,9 @@ and files generated from just the one command (`rails new`)
 
 ![Rails folder structure](images/rails_folders.png)
 
-While all these files may be daunting at first, you're already familiar with many of these components from your work with Sinatra. Additionally, you can ignore a lot of the other stuff until you need to
-incorporate some weird gem or dependency. So we started learning about *"convention
-over configuration"* during the class for Active Record.
+While all these files may be daunting at first, you're already familiar with many of these components from your work with Sinatra. 
 
-As we scale to a Rails size application, We can quickly see the need for conventions in such a massive
+As we scale to a Rails size application, we can quickly see the need for conventions in such a massive
 framework. Specifically for folder and file structure, Rails can be quite
 particular about how we name things. Throughout this week we'll be going through
 a bunch of different conventions we need to follow.
@@ -273,11 +276,11 @@ which you'll be going over in the next class.
 
 In the root directory of the application you will also see a `Gemfile` and, if you've run `bundle install`, `Gemfile.lock`
 
-### You Do: Setup Commands (10 minutes / 1:00)
+### Setup Commands (You Do) (10 minutes / 1:50)
 
 > 5 minutes exercise. 5 minutes review.
 
-The following are commands that we always run when creating and updating a Rails application. Your task is to run these in order and, based on the context clues (e.g., terminal output), figure out what they're doing. You answers don't need to be technical - keep it high level.
+The following are common commands that you will encounter when working with Rails applications. Your task is to run these in order and, based on the context clues (e.g., terminal output), figure out what they're doing. You answers don't need to be technical - keep it high level.
 
 | Command | What does it do? |
 |---------|------------------|
@@ -339,20 +342,18 @@ Let's focus on this particular line...
 
 > `3000` is the default port number in a Rails Application, just like `4567` with Sinatra.
 
-## Break (10 minutes / 1:15)
+### HTTP Request-Response Cycle (I do - Draw on Board) (5 minutes / 1:55)
 
-### You Do: Follow A Request (20 minutes / 1:35)
+Using our knowledge of the MVC request-response cycle and the files/folders we discovered during the scavenger hunt exercise, let's try following the path of an HTTP request through a Rails application. 
 
-> 10 minutes exercise. 10 minutes review.
+Remember, HTTP is a protocol - a system of rules - that determines how web pages get sent from one place to another. (Hyper Text Transfer Protocol). Among other things, http it defines the format of the messages passed between HTTP clients and an HTTP server.  Since the web is a *service*, it works through a combination of *clients* (which make requests) and *servers* (which receive requests).
 
-Using your knowledge of the MVC request-response cycle and the files/folders you discovered during the scavenger hunt exercise, try following the path of an HTTP request through a Rails application. HTTP is a protocol - a system of rules - that determines how web pages (see:'hypertext') get sent (see:'transferred') from one place to another. Among other things, it defines the format of the messages passed between HTTP clients and an HTTP server.  Since the web is a *service*, it works through a combination of *clients* (which make requests) and *servers* (which receive requests).
+Let's GET the homepage.
+- What does the request-repsonse cycle look like for this request? What files does it touch? How do we know?
 
-- `GET` the homepage of your app. What does the request-repsonse cycle look like for this request?
+Next let's talk about routes
 
-### Questions (10 minutes / 1:45)
-- Q & A about Rails so far
-
-#### Routes
+#### Routes (5 minutes / 1:55)
 
 1. Where do we configure our routes in a Rails Application?
 - What is the syntax for writing routes in a Rails App?
@@ -385,9 +386,9 @@ On the left side of the route declaration, we specify the HTTP verb and the path
 
 The routes file can be pretty complex, as it allows you to customize every part of incoming requests and outgoing responses. You will definetly want to have the [Rails Guide for Routing](http://guides.rubyonrails.org/routing.html) open for your first few attempts at writing routes.
 
-#### Views
+#### Views (You do) (5 minutes / 2:00)
 
-1. What is this `index.html.erb` file type?
+1. Let's create a view file, called `index.html.erb` within a folder called `welcome`. What is this `index.html.erb` file type?
 - Does it matter what we name our views folders. Does it matter if it's plural or singular?
 - What is the layouts directory used for?
 
@@ -402,17 +403,18 @@ The routes file can be pretty complex, as it allows you to customize every part 
 
 </details>
 
-#### Hello Rails!
-Now we know how to change our homepage route, let's point our homepage to a custom controller and action:
+#### Hello Rails! (You do)
+
+Now we know how to change our home page route, let's point our homepage to a custom controller and action:
 Steps:
-- create the `welcome` controller with the `index` action
+- create (or go to) the `welcome` controller with the `index` action
 - add text `<h1>Hello Rails!</h1>` to the `welcome/index.html.erb` view
-- point your `/` route to your new page
+- point your `/` route (the root of your application) to your new page
 - fire up your web server with `rails s`
-- visit your page
+- visit your home page
 - pat yourself on the back.
 
-#### Models
+#### Models (I do)
 
 Let's go back to our Tunr application and look at the models already set up for us
 
@@ -441,11 +443,29 @@ One of Rails' best features are its errors. Why?
 Rails provides detailed, understandable errors that provide guidance when building an application. We won't go too deep into them during
 this class, but you will get plenty of exposure during the upcoming lessons.
 
-To demonstrate, let's visit `http://localhost:3000/mispelledartists` in the browser. We should see...
+To demonstrate, let's visit `http://localhost:3000/somethingmissing` in the browser. We should see...
 
 ![no route error](images/no_route.png)
 
-## Bonus Material if we have time!
+## Bonus Option 1 (Hard!): POST and say Hello
+
+Let's try to POST to a new route, "hello". For this exercise, we are going to rely on error-driven development. Write a piece of code, see what error is output, then fix up our code to get to the next error.
+
+- One way to simulate a POST, which usually comes from a form submission, is via `curl`:
+`curl -d "user=Danny" http://localhost:3000/hello
+- What error did we receive?
+  - No route
+  - let's fix this up...
+    - add the route `post 'hello' => 'welcome#hello'`
+- Next what error did we receive?
+  - uninitialized constant WelcomeController
+  - add a controller, WelcomeController
+- Fix up the next error
+- The final error deals with security. It turns out that Rails has built in security features so that POSTs can only come in when the app developer as specifically allowed for them. This resource may help you through this security feature when POSTing via `curl`: http://api.rubyonrails.org/classes/ActionController/RequestForgeryProtection.html
+- If you are able to POST to hello and get a response, edit your "hello" action to return `hello, <%=user%>!`
+- You may want to turn off rendering a layout for this controller action.
+
+## Bonus Option 2:
 - Fork, clone and install Garnet so it runs on your local machine: [garnet](https://github.com/ga-dc/garnet)!
 
 ## Closing (5 minutes / 1:50)
