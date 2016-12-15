@@ -138,8 +138,6 @@ As a result, the request-response cycle looks like this for Rails...
 - Divide students into roles as specified here:
 https://github.com/ga-wdi-pvd/http-mvc-intro-rails/blob/master/exercise.md
 
-## Hello Rails
-
 ### Convention Over Configuration in Rails (5 minutes / 0:55)
 
 We've used the phrase "convention over configuration" when describing how to write things in Sinatra.
@@ -221,18 +219,17 @@ Your job is to look through the application and find the Rails equivalents for t
 
 ## Break! (10 minutes / 1:25)
 
-### What Does a Rails App Look Like? (15 minutes / 1:40)
+...and we're back!
 
-#### You Do: Create your app
+## Hello Rails! Create your own Rails app (You Do - 15 minutes / 1:40)
 
-Let's create our own Rails app:
+Let's jump into the good stuff and create our own Rails app:
 
 ```bash
 $ cd my_ga_projects_directory
 $ rails new hello_rails
 $ cd hello_rails
 ```
-#### Questions and a Look into Common Folders
 
 What happened during this generate command?
 - made a bunch of files
